@@ -8,6 +8,7 @@ function Index() {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Register />}></Route>
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/Login" element={<Login />}></Route>
         </Routes>
