@@ -3,6 +3,7 @@ import Register from "./Sessions/Register";
 import Login from "./Sessions/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./Sessions/Dashboard";
+import "../src/index.css";
 
 function Index() {
   return (
