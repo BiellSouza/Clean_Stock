@@ -80,7 +80,7 @@ function SidebarComponent() {
       {/* Sidebar */}
 
       <aside
-        className={`fixed left-0 top-0 z-40 flex h-screen w-[80%] max-w-64 flex-col justify-between border-r border-white/10 bg-primary p-4 shadow-xl transition-transform duration-300 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed left-0 top-0 z-40 flex h-screen w-[80%] max-w-64 flex-col justify-between border-r border-white/10 bg-quaternary p-4 shadow-xl transition-transform duration-300 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div>
           {/* Cabeçalho */}
@@ -107,7 +107,7 @@ function SidebarComponent() {
                 className={({ isActive }) =>
                   `flex items-center gap-4 rounded-xl px-3 py-3 transition-all duration-200 ${
                     isActive
-                      ? "bg-primary border border-white/40 font-medium text-white shadow-md shadow-black/10"
+                      ? "bg-primaryDark font-medium text-white shadow-md shadow-black/10"
                       : "text-white/70 hover:bg-white/10 hover:text-white"
                   }`
                 }
@@ -132,7 +132,7 @@ function SidebarComponent() {
               aria-pressed={!selected}
               className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
                 !selected
-                  ? "bg-white/40 text-white shadow-md"
+                  ? "bg-destaq text-white shadow-md"
                   : "text-white/50 hover:bg-white/5 hover:text-white/80"
               }`}
             >
@@ -153,7 +153,7 @@ function SidebarComponent() {
               aria-pressed={selected}
               className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
                 selected
-                  ? "bg-white/40 text-white shadow-md"
+                  ? "bg-destaq text-white shadow-md"
                   : "text-white/50 hover:bg-white/5 hover:text-white/80"
               }`}
             >
