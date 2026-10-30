@@ -2,13 +2,15 @@ import React from "react";
 import Register from "./Sessions/Register";
 import Login from "./Sessions/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./Sessions/Dashboard";
+import "../src/index.css";
 
 function Index() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Register />}></Route>
+          <Route path="/" element={<Dashboard />}></Route>
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/Login" element={<Login />}></Route>
         </Routes>
