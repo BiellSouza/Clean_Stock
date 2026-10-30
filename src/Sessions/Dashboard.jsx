@@ -67,28 +67,79 @@ function Dashboard() {
       name: "Detergente 500ml",
       galpao: "5",
       loja: "10",
+      minimo: 20,
     },
     {
       img: "https://cdn.awsli.com.br/2500x2500/1775/1775051/produto/134342383/7898915457018-k22oljpvvy.png",
       name: "Água Sanitária 1L",
       galpao: "8",
       loja: "15",
+      minimo: 30,
     },
     {
       img: "https://bistek.vtexassets.com/arquivos/ids/216280-800-800?v=639124623738770000&width=800&height=800&aspect=true",
-      name: "Desinfetante",
+      name: "Desinfetante 2L",
       galpao: "12",
       loja: "20",
+      minimo: 40,
+    },
+    {
+      img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTGukNDwk-6fifRNPUrPPaNZbqog4J5oYLhIyr6Htw02DWlBY_SyfWRCkL-2M59KVO0nLdtNsBM-AvumiVHqJr5LicL3M8sFKuxsKnQ6jun8ftETETnY-3LHjCKsiGeUkY4EZXrTbiOJQ&usqp=CAc",
+      name: "Papel Higiênico Neve c/4",
+      galpao: "10",
+      loja: "5",
+      minimo: 30,
+    },
+    {
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ68DPosJr9iCW3IeIkBCNna5ohb53bsS1dt29_5bhn6hLwiqRWJISDb9s&s=10",
+      name: "Amaciante 2L",
+      galpao: "8",
+      loja: "7",
+      minimo: 25,
+    },
+    {
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv1d79iBwpLz0H6CgxjlMjN4EpePpKjGZRRNCEvHm1xg&s=10",
+      name: "Sabão em Pó 1kg",
+      galpao: "15",
+      loja: "12",
+      minimo: 40,
+    },
+    {
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwjg0bYY4PLgg1n6iYmukVyN_tbe0WbPtHgMq63lzIbQ&s",
+      name: "Multiuso 500ml",
+      galpao: "6",
+      loja: "9",
+      minimo: 20,
+    },
+    {
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP9lw9JDGspLDpVbPRibWCQ3ukhL0P3rbXISymS8gpeg&s",
+      name: "Álcool 70% 1L",
+      galpao: "4",
+      loja: "8",
+      minimo: 25,
+    },
+    {
+      img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQTOT0eKPpHHsABfl5qjlkiGGK9--FyFUIyukp-3w0JewEAEt0tJUrFx6w4Xz5sxRvvdSYGftSgFM_W3GB-Mw-felJIYagB-YQ3-vDL2hVSY6EQAsRM4xStdvK0o8-QRX75UUyOh6g&usqp=CAc",
+      name: "Limpador Perfumado 3L",
+      galpao: "18",
+      loja: "12",
+      minimo: 40,
+    },
+    {
+      img: "https://superprobettanin.com.br/wp-content/uploads/2021/09/9401_.png",
+      name: "Esponja de Limpeza",
+      galpao: "5",
+      loja: "4",
+      minimo: 20,
     },
   ];
-
   return (
-    <div>
+    <div className="min-h-screen bg-terciary pb-8">
       <div>
         <SidebarComponent />
       </div>
 
-      <div className="ml-64 min-w-0 h-screen bg-terciary">
+      <div className="ml-64 min-w-0">
         {/* header */}
         <div className="bg-secondary px-8 py-4 border-b border-black/10 flex items-center justify-between">
           {/* Imput */}
@@ -154,7 +205,7 @@ function Dashboard() {
           </div>
         </div>
         {/* Dados */}
-        <div className="px-8 grid grid-cols-2 w-full gap-4">
+        <div className="px-8 lg:grid lg:grid-cols-2 xl:grid-cols-4 w-full gap-4">
           {dados.map((item, index) => (
             <CardsDashboard
               key={index}
@@ -275,7 +326,8 @@ function Dashboard() {
           </section>
         </div>
 
-        <div className="mt-4 w-ful mx-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        {/* Produtos */}
+        <div className="mt-4 mx-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-semibold text-slate-800">
               Produtos do estoque
@@ -287,12 +339,12 @@ function Dashboard() {
           </div>
 
           {/* Lista de produtos */}
-          <div className="space-y-2 xl:grid xl:grid-cols-2">
+          <div className="space-y-2 xl:grid xl:grid-cols-2 gap-x-4 overflow-y-auto h-68">
             {itensTable.map((item, index) => {
               return (
                 <div
                   key={index}
-                  className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-2 transition-all duration-200 hover:border-primary/30 hover:bg-slate-50"
+                  className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-2 transition-all duration-200 hover:border-primary/30 hover:bg-slate-50 h-16"
                 >
                   {/* Imagem e informações */}
                   <div className="flex min-w-0 items-center gap-3">
