@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { supabase } from "../lib/supabase";
 import Sidebar from "../Components/Sidebar";
 import HeaderComponent from "../Components/HeaderComponent";
 import {
@@ -21,9 +22,54 @@ function Stock() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalProduct, setModalProduct] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const loja = 612;
-  const galpao = 636;
+
+  const [produtos, setProdutos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const loja = produtos.reduce(
+    (total, produto) => total + Number(produto.estoqueLoja || 0),
+    0,
+  );
+
+  const galpao = produtos.reduce(
+    (total, produto) => total + Number(produto.estoqueGalpao || 0),
+    0,
+  );
+
   const totalProdutos = loja + galpao;
+
+  const buscarProdutos = async () => {
+    const { data, error } = await supabase
+      .from("produtos")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Erro ao buscar produtos:", error.message);
+      alert("Não foi possível carregar os produtos.");
+      setLoading(false);
+      return;
+    }
+
+    const produtosFormatados = data.map((produto) => ({
+      id: produto.id,
+      nome: produto.nome,
+      categoria: produto.categoria,
+      unidade: produto.unidade,
+      preco: Number(produto.preco),
+      estoqueLoja: produto.estoque_loja,
+      estoqueGalpao: produto.estoque_galpao,
+      estoqueMinimo: produto.estoque_minimo,
+      imagem: produto.imagem,
+    }));
+
+    setProdutos(produtosFormatados);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    buscarProdutos();
+  }, []);
 
   const infos = [
     {
@@ -43,48 +89,47 @@ function Stock() {
     },
   ];
 
-  const [produtos, setProdutos] = useState([
-    {
-      id: 1,
-      nome: "Sabão líquido 5L",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 3.5,
-      estoqueLoja: 12,
-      estoqueGalpao: 18,
-      estoqueMinimo: 10,
-      imagem:
-        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
-    },
-    {
-      id: 2,
-      nome: "Água Sanitária 1L",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 4.2,
-      estoqueLoja: 5,
-      estoqueGalpao: 10,
-      estoqueMinimo: 20,
-      imagem:
-        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQH5xhTvUfs6LEUIT3kodNiVnWDWzKvYeQL7G4FhLMo1CH7SPd80vpfDGV1kRF8ZbzgYycLv1MVf9CJhoflY0OYqMLl80qXwBmAjaL5xG5llyAcnbuR6Cg93CiR077hjRbygFNlaR0&usqp=CAc",
-    },
-    {
-      id: 3,
-      nome: "Desinfetante Lavanda 2L",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 7.5,
-      estoqueLoja: 25,
-      estoqueGalpao: 40,
-      estoqueMinimo: 15,
-      imagem:
-        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
-    },
-  ]);
+  // const [produtos, setProdutos] = useState([
+  //   {
+  //     id: 1,
+  //     nome: "Sabão líquido 5L",
+  //     categoria: "Limpeza",
+  //     unidade: "UN",
+  //     preco: 3.5,
+  //     estoqueLoja: 12,
+  //     estoqueGalpao: 18,
+  //     estoqueMinimo: 10,
+  //     imagem:
+  //       "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
+  //   },
+  //   {
+  //     id: 2,
+  //     nome: "Água Sanitária 1L",
+  //     categoria: "Limpeza",
+  //     unidade: "UN",
+  //     preco: 4.2,
+  //     estoqueLoja: 5,
+  //     estoqueGalpao: 10,
+  //     estoqueMinimo: 20,
+  //     imagem:
+  //       "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQH5xhTvUfs6LEUIT3kodNiVnWDWzKvYeQL7G4FhLMo1CH7SPd80vpfDGV1kRF8ZbzgYycLv1MVf9CJhoflY0OYqMLl80qXwBmAjaL5xG5llyAcnbuR6Cg93CiR077hjRbygFNlaR0&usqp=CAc",
+  //   },
+  //   {
+  //     id: 3,
+  //     nome: "Desinfetante Lavanda 2L",
+  //     categoria: "Limpeza",
+  //     unidade: "UN",
+  //     preco: 7.5,
+  //     estoqueLoja: 25,
+  //     estoqueGalpao: 40,
+  //     estoqueMinimo: 15,
+  //     imagem:
+  //       "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
+  //   },
+  // ]);
 
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
-    codigo: "",
     categoria: "",
     unidade: "UN",
     preco: "",
@@ -116,53 +161,159 @@ function Stock() {
     }
   };
 
-  const adicionarProduto = (e) => {
+  const adicionarProduto = async (e) => {
     e.preventDefault();
 
-    if (
-      !novoProduto.nome.trim() ||
-      !novoProduto.codigo.trim() ||
-      !novoProduto.categoria ||
-      !novoProduto.unidade ||
-      novoProduto.preco === "" ||
-      novoProduto.estoqueLoja === "" ||
-      novoProduto.estoqueGalpao === "" ||
-      novoProduto.estoqueMinimo === ""
-    ) {
-      alert("Por favor, preencha todos os campos obrigatórios!");
+    // 1. Validar os campos obrigatórios
+    const campos = {
+      nome: novoProduto.nome,
+      categoria: novoProduto.categoria,
+      unidade: novoProduto.unidade,
+      preco: novoProduto.preco,
+      estoqueLoja: novoProduto.estoqueLoja,
+      estoqueGalpao: novoProduto.estoqueGalpao,
+      estoqueMinimo: novoProduto.estoqueMinimo,
+    };
+
+    const campoVazio = Object.entries(campos).find(
+      ([campo, valor]) =>
+        valor === "" ||
+        valor === null ||
+        valor === undefined ||
+        (typeof valor === "string" && valor.trim() === ""),
+    );
+
+    if (campoVazio) {
+      alert(`Preencha o campo: ${campoVazio[0]}`);
       return;
     }
 
-    const produto = {
-      id: Date.now(),
-      nome: novoProduto.nome,
-      codigo: novoProduto.codigo,
-      categoria: novoProduto.categoria,
-      unidade: novoProduto.unidade,
+    // 2. Validar os valores numéricos
+    const valoresNumericos = {
       preco: Number(novoProduto.preco),
       estoqueLoja: Number(novoProduto.estoqueLoja),
       estoqueGalpao: Number(novoProduto.estoqueGalpao),
       estoqueMinimo: Number(novoProduto.estoqueMinimo),
-      imagem: novoProduto.imagemPreview || item3,
     };
 
-    setProdutos((prev) => [...prev, produto]);
+    const valorInvalido = Object.entries(valoresNumericos).find(
+      ([campo, valor]) => !Number.isFinite(valor) || valor < 0,
+    );
 
-    setNovoProduto({
-      nome: "",
-      codigo: "",
-      categoria: "",
-      unidade: "UN",
-      preco: "",
-      estoqueLoja: "",
-      estoqueGalpao: "",
-      estoqueMinimo: "",
-      imagem: "",
-      imagemPreview: "",
-    });
+    if (valorInvalido) {
+      alert(`Verifique o valor do campo: ${valorInvalido[0]}`);
+      return;
+    }
 
-    setModalOpen(false);
+    setSalvando(true);
+
+    try {
+      let imagemUrl = null;
+
+      // 3. Fazer upload da imagem, caso exista
+      if (novoProduto.imagem instanceof File) {
+        const arquivo = novoProduto.imagem;
+
+        const extensao = arquivo.name.split(".").pop();
+        const nomeArquivo = `${crypto.randomUUID()}.${extensao}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("produtos")
+          .upload(nomeArquivo, arquivo, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+        if (uploadError) {
+          throw uploadError;
+        }
+
+        // 4. Obter URL pública da imagem
+        const { data: imagemData } = supabase.storage
+          .from("produtos")
+          .getPublicUrl(nomeArquivo);
+
+        imagemUrl = imagemData.publicUrl;
+      }
+
+      // 5. Salvar produto no banco de dados
+      const { data, error } = await supabase
+        .from("produtos")
+        .insert([
+          {
+            nome: novoProduto.nome.trim(),
+            categoria: novoProduto.categoria,
+            unidade: novoProduto.unidade,
+            preco: valoresNumericos.preco,
+            estoque_loja: valoresNumericos.estoqueLoja,
+            estoque_galpao: valoresNumericos.estoqueGalpao,
+            estoque_minimo: valoresNumericos.estoqueMinimo,
+            imagem: imagemUrl,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      // 6. Formatar o produto retornado pelo Supabase
+      const produtoFormatado = {
+        id: data.id,
+        nome: data.nome,
+        categoria: data.categoria,
+        unidade: data.unidade,
+        preco: Number(data.preco),
+        estoqueLoja: Number(data.estoque_loja),
+        estoqueGalpao: Number(data.estoque_galpao),
+        estoqueMinimo: Number(data.estoque_minimo),
+        imagem: data.imagem,
+      };
+
+      // 7. Atualizar a listagem sem precisar recarregar a página
+      setProdutos((prev) => [produtoFormatado, ...prev]);
+
+      // 8. Limpar o formulário
+      setNovoProduto({
+        nome: "",
+        categoria: "",
+        unidade: "UN",
+        preco: "",
+        estoqueLoja: "",
+        estoqueGalpao: "",
+        estoqueMinimo: "",
+        imagem: null,
+        imagemPreview: "",
+      });
+
+      // 9. Fechar o modal
+      setModalOpen(false);
+
+      alert("Produto cadastrado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao cadastrar produto:", error);
+
+      if (error.code === "23505") {
+        alert("Já existe um produto cadastrado com esse código!");
+      } else {
+        alert(`Erro ao cadastrar produto: ${error.message}`);
+      }
+    } finally {
+      setSalvando(false);
+    }
   };
+  const [salvando, setSalvando] = useState(false);
+  const [pesquisa, setPesquisa] = useState("");
+  const produtosFiltrados = produtos.filter((produto) => {
+    const termo = pesquisa.toLowerCase().trim();
+
+    return (
+      produto.nome?.toLowerCase().includes(termo) ||
+      produto.codigo?.toLowerCase().includes(termo) ||
+      produto.categoria?.toLowerCase().includes(termo)
+    );
+  });
 
   return (
     <div>
@@ -219,14 +370,25 @@ function Stock() {
           {/* Input */}
           <div className="w-full">
             <div className="border border-gray-200 py-2 px-4 hidden lg:flex items-center gap-4 rounded-xl w-full bg-terciary">
-              <span>
-                <Search className="size-5" />
-              </span>
+              <Search className="size-5 text-gray-500" />
+
               <input
                 type="text"
-                placeholder="Buscar produtos, pedidos..."
+                value={pesquisa}
+                onChange={(e) => setPesquisa(e.target.value)}
+                placeholder="Buscar por nome, código ou categoria..."
                 className="w-full outline-none focus:duration-500 focus:transition-all"
               />
+
+              {pesquisa && (
+                <button
+                  type="button"
+                  onClick={() => setPesquisa("")}
+                  className="text-gray-400 hover:text-gray-700"
+                >
+                  <X size={18} />
+                </button>
+              )}
             </div>
           </div>
           {/* Button */}
@@ -277,56 +439,77 @@ function Stock() {
             </div>
 
             <div className="flex flex-col px-4 py-2 border border-primary/30 rounded-lg border-t-0 max-h-[calc(100vh-418px)] min-h-0 overflow-y-auto">
-              {produtos.map((produto, index) => {
-                const total = produto.estoqueLoja + produto.estoqueGalpao;
-                const baixo = total <= 50;
+              {loading ? (
+                <p className="p-6 text-center text-gray-500">
+                  Carregando produtos...
+                </p>
+              ) : produtosFiltrados.length === 0 ? (
+                <p className="p-6 text-center text-gray-500">
+                  Nenhum produto cadastrado.
+                </p>
+              ) : (
+                produtosFiltrados.map((produto) => {
+                  const total =
+                    Number(produto.estoqueLoja) + Number(produto.estoqueGalpao);
 
-                return (
-                  <div
-                    key={index}
-                    className="grid grid-cols-[minmax(220px,2fr)_1.5fr_1fr_1.2fr_1fr_1.5fr_0.5fr] border-b border-primaryDark/30 last:border-b-0"
-                  >
-                    <div className="flex items-center gap-2 h-16">
-                      <img
-                        src={produto.imagem}
-                        alt=""
-                        className="w-12 h-12 object-contain shrink-0"
-                      />
-                      <h1 className="text-sm max-w-24">{produto.nome}</h1>
-                    </div>
-                    <p className="text-sm flex items-center">
-                      {produto.categoria}
-                    </p>
-                    <p className="flex items-center ml-2">
-                      {produto.estoqueLoja}
-                    </p>
-                    <p className="flex items-center ml-4">
-                      {produto.estoqueGalpao}
-                    </p>
-                    <p className="flex items-center ml-4">{total}</p>
-                    <p className="flex items-center ml-2">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          baixo
-                            ? "bg-red-100 text-red-600"
-                            : "bg-emerald-100 text-emerald-600"
-                        }`}
-                      >
-                        {baixo ? "Baixo" : "Normal"}
-                      </span>
-                    </p>
-                    <button
-                      onClick={() => {
-                        setSelectedProduct(produto);
-                        setModalProduct(true);
-                      }}
-                      className="cursor-pointer hover:bg-primary/20 transition-all duration-500 w-fit h-fit p-2 m-auto border rounded-lg border-primaryDark/20 text-primaryDark"
+                  const baixo = total <= produto.estoqueMinimo;
+
+                  return (
+                    <div
+                      key={produto.id}
+                      className="grid grid-cols-[minmax(220px,2fr)_1.5fr_1fr_1.2fr_1fr_1.5fr_0.5fr] border-b border-primaryDark/30 last:border-b-0"
                     >
-                      <Ellipsis />
-                    </button>
-                  </div>
-                );
-              })}
+                      <div className="flex items-center gap-2 h-16">
+                        {produto.imagem && (
+                          <img
+                            src={produto.imagem}
+                            alt={produto.nome}
+                            className="w-12 h-12 object-contain shrink-0"
+                          />
+                        )}
+
+                        <h1 className="text-sm max-w-24">{produto.nome}</h1>
+                      </div>
+
+                      <p className="text-sm flex items-center">
+                        {produto.categoria}
+                      </p>
+
+                      <p className="flex items-center ml-2">
+                        {produto.estoqueLoja}
+                      </p>
+
+                      <p className="flex items-center ml-4">
+                        {produto.estoqueGalpao}
+                      </p>
+
+                      <p className="flex items-center ml-4">{total}</p>
+
+                      <p className="flex items-center ml-2">
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                            baixo
+                              ? "bg-red-100 text-red-600"
+                              : "bg-emerald-100 text-emerald-600"
+                          }`}
+                        >
+                          {baixo ? "Baixo" : "Normal"}
+                        </span>
+                      </p>
+
+                      <button
+                        onClick={() => {
+                          setSelectedProduct(produto);
+                          setModalProduct(true);
+                        }}
+                        className="cursor-pointer hover:bg-primary/20 transition-all duration-500 w-fit h-fit p-2 m-auto border rounded-lg border-primaryDark/20 text-primaryDark"
+                      >
+                        <Ellipsis />
+                      </button>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
@@ -410,21 +593,24 @@ function Stock() {
                                 <label className="block text-sm font-medium text-slate-600 mb-2">
                                   Categoria
                                 </label>
+
                                 <select
                                   name="categoria"
-                                  onClick={novoProduto.categoria}
+                                  value={novoProduto.categoria}
                                   onChange={handleChange}
-                                  className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm text-slate-600 outline-none focus:border-blue-500"
+                                  className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm"
                                 >
                                   <option value="">
                                     Selecione uma categoria
                                   </option>
-                                  <option>Limpeza</option>
-                                  <option>Alimentos</option>
-                                  <option>Descartáveis</option>
-                                  <option>Higiene</option>
-                                  <option>EPI's</option>
-                                  <option>Outros</option>
+                                  <option value="Limpeza">Limpeza</option>
+                                  <option value="Alimentos">Alimentos</option>
+                                  <option value="Descartáveis">
+                                    Descartáveis
+                                  </option>
+                                  <option value="Higiene">Higiene</option>
+                                  <option value="EPI's">EPI's</option>
+                                  <option value="Outros">Outros</option>
                                 </select>
                               </div>
 
@@ -434,7 +620,7 @@ function Stock() {
                                 </label>
                                 <select
                                   name="unidade"
-                                  onClick={novoProduto.unidade}
+                                  value={novoProduto.unidade}
                                   onChange={handleChange}
                                   className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm text-slate-600 outline-none focus:border-blue-500"
                                 >
@@ -457,7 +643,7 @@ function Stock() {
                                   <input
                                     type="number"
                                     name="preco"
-                                    onClick={novoProduto.preco}
+                                    value={novoProduto.preco}
                                     onChange={handleChange}
                                     placeholder="0,00"
                                     className="w-full h-11 pl-11 pr-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
@@ -479,7 +665,7 @@ function Stock() {
                                   <input
                                     type="number"
                                     name="estoqueLoja"
-                                    onClick={novoProduto.estoqueLoja}
+                                    value={novoProduto.estoqueLoja}
                                     onChange={handleChange}
                                     placeholder="0"
                                     className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
@@ -493,7 +679,7 @@ function Stock() {
                                   <input
                                     type="number"
                                     name="estoqueGalpao"
-                                    onClick={novoProduto.estoqueGalpao}
+                                    value={novoProduto.estoqueGalpao}
                                     onChange={handleChange}
                                     placeholder="0"
                                     className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
@@ -507,7 +693,7 @@ function Stock() {
                                   <input
                                     type="number"
                                     name="estoqueMinimo"
-                                    onClick={novoProduto.estoqueMinimo}
+                                    value={novoProduto.estoqueMinimo}
                                     onChange={handleChange}
                                     placeholder="Ex: 10"
                                     className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
@@ -557,10 +743,11 @@ function Stock() {
 
                         <button
                           type="submit"
+                          disabled={salvando}
                           className="cursor-pointer sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-700 hover:scale-90 duration-500 text-white text-sm font-semibold shadow-lg shadow-blue-600/20 transition"
                         >
                           <Plus size={18} />
-                          Cadastrar produto
+                          {salvando ? "Salvando..." : "Cadastrar produto"}
                         </button>
                       </div>
                     </form>
