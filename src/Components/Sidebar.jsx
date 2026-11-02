@@ -33,7 +33,7 @@ function SidebarComponent() {
     },
     {
       icon: <Folders size={20} />,
-      link: "/pedidos",
+      link: "/orders",
       label: "Pedidos",
     },
     {

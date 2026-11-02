@@ -4,7 +4,8 @@ import Login from "./Sessions/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./Sessions/Dashboard";
 import "../src/index.css";
-import Estoque from "./Sessions/Estoque";
+import Stock from "./Sessions/Stock";
+import Orders from "./Sessions/Orders";
 
 function Index() {
   return (
@@ -14,7 +15,8 @@ function Index() {
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/estoque" element={<Estoque />}></Route>
+          <Route path="/estoque" element={<Stock />}></Route>
+          <Route path="/orders" element={<Orders />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

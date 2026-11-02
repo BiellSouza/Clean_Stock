@@ -14,7 +14,7 @@ import {
   Info,
 } from "lucide-react";
 
-function Estoque() {
+function Stock() {
   const styleButtons = `border border-primary/20 p-2 bg-primary/5 rounded-lg text-primaryDark hover:scale-90 transition-all duration-500 cursor-pointer`;
 
   const [selected, setSelected] = useState("");
@@ -419,11 +419,11 @@ function Estoque() {
                                   <option value="">
                                     Selecione uma categoria
                                   </option>
-                                  <option>Detergentes</option>
-                                  <option>Desinfetantes</option>
-                                  <option>Água sanitária</option>
+                                  <option>Limpeza</option>
+                                  <option>Alimentos</option>
+                                  <option>Descartáveis</option>
                                   <option>Higiene</option>
-                                  <option>Acessórios de limpeza</option>
+                                  <option>EPI's</option>
                                   <option>Outros</option>
                                 </select>
                               </div>
@@ -738,4 +738,4 @@ function Estoque() {
   );
 }
 
-export default Estoque;
+export default Stock;
