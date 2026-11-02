@@ -135,15 +135,15 @@ function Dashboard() {
   ];
   return (
     <div className="min-h-screen bg-terciary pb-8">
-      <div>
+      <div className="">
         <SidebarComponent />
       </div>
 
-      <div className="ml-64 min-w-0">
+      <div className="lg:ml-64 min-w-0">
         {/* header */}
         <div className="bg-secondary px-8 py-4 border-b border-black/10 flex items-center justify-between">
           {/* Imput */}
-          <div className="border border-gray-200 max-w-164 py-2 px-4 flex items-center gap-4 rounded-xl lg:w-[50%] bg-terciary">
+          <div className="border border-gray-200 max-w-164 py-2 px-4 hidden lg:flex items-center gap-4 rounded-xl lg:w-[50%] bg-terciary">
             <span>
               <Search className="size-5" />
             </span>
@@ -166,7 +166,7 @@ function Dashboard() {
               <img
                 src="http://cdn.pfps.gg/pfps/6096-dark-aesthetic-anime-user-icon.png"
                 alt=""
-                className="lg:max-w-10 rounded-full"
+                className="max-w-8 lg:max-w-10 rounded-full"
               />
               <div className="flex gap-8">
                 <div>

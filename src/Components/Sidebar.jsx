@@ -17,7 +17,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function SidebarComponent() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024);
   const [selected, setSelected] = useState(false);
 
   const links = [
