@@ -13,6 +13,7 @@ import {
   Ellipsis,
   Info,
 } from "lucide-react";
+import item3 from "../assets/produtos/item2.png";
 
 function Estoque() {
   const styleButtons = `border border-primary/20 p-2 bg-primary/5 rounded-lg text-primaryDark hover:scale-90 transition-all duration-500 cursor-pointer`;
@@ -43,7 +44,7 @@ function Estoque() {
     },
   ];
 
-  const produtos = [
+  const [produtos, setProdutos] = useState([
     {
       id: 1,
       nome: "Sabão líquido 5L",
@@ -67,7 +68,8 @@ function Estoque() {
       estoqueGalpao: 10,
       estoqueMinimo: 20,
       descricao: "Água sanitária para limpeza e desinfecção.",
-      imagem: "/products/agua-sanitaria.png",
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQH5xhTvUfs6LEUIT3kodNiVnWDWzKvYeQL7G4FhLMo1CH7SPd80vpfDGV1kRF8ZbzgYycLv1MVf9CJhoflY0OYqMLl80qXwBmAjaL5xG5llyAcnbuR6Cg93CiR077hjRbygFNlaR0&usqp=CAc",
     },
     {
       id: 3,
@@ -79,259 +81,7 @@ function Estoque() {
       estoqueGalpao: 40,
       estoqueMinimo: 15,
       descricao: "Desinfetante perfumado com fragrância de lavanda.",
-      imagem: "/products/desinfetante.png",
-    },
-    {
-      id: 4,
-      nome: "Sabão em Pó 1kg",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 8.9,
-      estoqueLoja: 3,
-      estoqueGalpao: 4,
-      estoqueMinimo: 15,
-      descricao: "Sabão em pó para lavagem de roupas.",
-      imagem: "/products/sabao.png",
-    },
-    {
-      id: 5,
-      nome: "Papel Higiênico 30m",
-      categoria: "Limpeza",
-      unidade: "PCT",
-      preco: 12.9,
-      estoqueLoja: 30,
-      estoqueGalpao: 50,
-      estoqueMinimo: 20,
-      descricao: "Pacote de papel higiênico com folhas macias.",
-      imagem: "/products/papel.png",
-    },
-    {
-      id: 6,
-      nome: "Amaciante Concentrado 1L",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 11.5,
-      estoqueLoja: 8,
-      estoqueGalpao: 22,
-      estoqueMinimo: 15,
-      descricao: "Amaciante concentrado para roupas.",
-      imagem: "/products/amaciante.png",
-    },
-    {
-      id: 7,
-      nome: "Multiuso 500ml",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 5.9,
-      estoqueLoja: 18,
-      estoqueGalpao: 35,
-      estoqueMinimo: 10,
-      descricao: "Limpador multiuso para diversas superfícies.",
-      imagem: "/products/multiuso.png",
-    },
-    {
-      id: 8,
-      nome: "Álcool 70% 1L",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 9.9,
-      estoqueLoja: 6,
-      estoqueGalpao: 8,
-      estoqueMinimo: 20,
-      descricao: "Álcool 70% para higienização de superfícies.",
-      imagem: "/products/alcool.png",
-    },
-    {
-      id: 9,
-      nome: "Desengordurante 500ml",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 8.5,
-      estoqueLoja: 20,
-      estoqueGalpao: 30,
-      estoqueMinimo: 12,
-      descricao: "Remove gorduras de fogões e superfícies.",
-      imagem: "/products/desengordurante.png",
-    },
-    {
-      id: 10,
-      nome: "Limpador Perfumado 1L",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 6.9,
-      estoqueLoja: 2,
-      estoqueGalpao: 5,
-      estoqueMinimo: 15,
-      descricao: "Limpador perfumado para pisos e superfícies.",
-      imagem: "/products/limpador.png",
-    },
-    {
-      id: 11,
-      nome: "Sabonete Líquido 500ml",
-      categoria: "Limpeza",
-      unidade: "UN",
-      preco: 10.9,
-      estoqueLoja: 15,
-      estoqueGalpao: 25,
-      estoqueMinimo: 10,
-      descricao: "Sabonete líquido para higiene das mãos.",
-      imagem: "/products/sabonete.png",
-    },
-    {
-      id: 12,
-      nome: "Desinfetante Eucalipto 5L",
-      categoria: "Desinfetantes",
-      unidade: "UN",
-      preco: 19.9,
-      estoqueLoja: 10,
-      estoqueGalpao: 20,
-      estoqueMinimo: 12,
-      descricao: "Desinfetante de uso geral com fragrância de eucalipto.",
-      imagem: "/products/desinfetante-5l.png",
-    },
-    {
-      id: 13,
-      nome: "Cloro Gel 700g",
-      categoria: "Água sanitária",
-      unidade: "UN",
-      preco: 8.9,
-      estoqueLoja: 4,
-      estoqueGalpao: 3,
-      estoqueMinimo: 10,
-      descricao: "Cloro em gel para limpeza de banheiros.",
-      imagem: "/products/cloro-gel.png",
-    },
-    {
-      id: 14,
-      nome: "Esponja Multiuso",
-      categoria: "Acessórios",
-      unidade: "UN",
-      preco: 2.5,
-      estoqueLoja: 50,
-      estoqueGalpao: 100,
-      estoqueMinimo: 30,
-      descricao: "Esponja multiuso para limpeza doméstica.",
-      imagem: "/products/esponja.png",
-    },
-    {
-      id: 15,
-      nome: "Luva de Limpeza",
-      categoria: "Acessórios",
-      unidade: "PAR",
-      preco: 7.9,
-      estoqueLoja: 12,
-      estoqueGalpao: 18,
-      estoqueMinimo: 10,
-      descricao: "Luva de proteção para atividades de limpeza.",
-      imagem: "/products/luva.png",
-    },
-    {
-      id: 16,
-      nome: "Saco de Lixo 50L",
-      categoria: "Descartáveis",
-      unidade: "PCT",
-      preco: 9.5,
-      estoqueLoja: 25,
-      estoqueGalpao: 45,
-      estoqueMinimo: 20,
-      descricao: "Pacote de sacos de lixo com capacidade de 50 litros.",
-      imagem: "/products/saco-lixo.png",
-    },
-    {
-      id: 17,
-      nome: "Pano de Chão",
-      categoria: "Acessórios",
-      unidade: "UN",
-      preco: 6.5,
-      estoqueLoja: 3,
-      estoqueGalpao: 2,
-      estoqueMinimo: 10,
-      descricao: "Pano de chão resistente para limpeza.",
-      imagem: "/products/pano.png",
-    },
-    {
-      id: 18,
-      nome: "Rodo 40cm",
-      categoria: "Acessórios",
-      unidade: "UN",
-      preco: 15.9,
-      estoqueLoja: 14,
-      estoqueGalpao: 20,
-      estoqueMinimo: 8,
-      descricao: "Rodo para limpeza de pisos e superfícies.",
-      imagem: "/products/rodo.png",
-    },
-    {
-      id: 19,
-      nome: "Vassoura Multiuso",
-      categoria: "Acessórios",
-      unidade: "UN",
-      preco: 18.9,
-      estoqueLoja: 9,
-      estoqueGalpao: 15,
-      estoqueMinimo: 10,
-      descricao: "Vassoura para limpeza de ambientes internos e externos.",
-      imagem: "/products/vassoura.png",
-    },
-    {
-      id: 20,
-      nome: "Desodorizador de Ambiente",
-      categoria: "Aromatizantes",
-      unidade: "UN",
-      preco: 12.5,
-      estoqueLoja: 20,
-      estoqueGalpao: 35,
-      estoqueMinimo: 15,
-      descricao: "Aromatizador para ambientes com fragrância agradável.",
-      imagem: "/products/aromatizador.png",
-    },
-    {
-      id: 21,
-      nome: "Limpa Vidros 500ml",
-      categoria: "Limpadores",
-      unidade: "UN",
-      preco: 6.5,
-      estoqueLoja: 7,
-      estoqueGalpao: 8,
-      estoqueMinimo: 20,
-      descricao: "Limpador para vidros e superfícies espelhadas.",
-      imagem: "/products/limpa-vidros.png",
-    },
-    {
-      id: 22,
-      nome: "Sabão em Barra 5 Unidades",
-      categoria: "Lavanderia",
-      unidade: "PCT",
-      preco: 9.9,
-      estoqueLoja: 18,
-      estoqueGalpao: 30,
-      estoqueMinimo: 12,
-      descricao: "Pacote com cinco unidades de sabão em barra.",
-      imagem: "/products/sabao-barra.png",
-    },
-    {
-      id: 23,
-      nome: "Desentupidor Líquido 1L",
-      categoria: "Limpadores",
-      unidade: "UN",
-      preco: 14.9,
-      estoqueLoja: 5,
-      estoqueGalpao: 4,
-      estoqueMinimo: 12,
-      descricao: "Produto para desobstrução de encanamentos.",
-      imagem: "/products/desentupidor.png",
-    },
-    {
-      id: 24,
-      nome: "Papel Toalha 2 Rolos",
-      categoria: "Higiene",
-      unidade: "PCT",
-      preco: 8.5,
-      estoqueLoja: 22,
-      estoqueGalpao: 40,
-      estoqueMinimo: 15,
-      descricao: "Pacote de papel toalha para uso doméstico.",
-      imagem: "/products/papel-toalha.png",
+      imagem: item3,
     },
     {
       id: 25,
@@ -345,7 +95,78 @@ function Estoque() {
       descricao: "Balde plástico resistente para atividades de limpeza.",
       imagem: "/products/balde.png",
     },
-  ];
+  ]);
+
+  const [novoProduto, setNovoProduto] = useState({
+    nome: "",
+    codigo: "",
+    categoria: "",
+    unidade: "UN",
+    preco: "",
+    estoqueLoja: "",
+    estoqueGalpao: "",
+    estoqueMinimo: "",
+    descricao: "",
+    imagem: "",
+  });
+
+  // Função para atualizar os campos
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setNovoProduto((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleImagem = (e) => {
+    const arquivo = e.target.files[0];
+
+    if (arquivo) {
+      setNovoProduto((prev) => ({
+        ...prev,
+        imagem: arquivo,
+        imagemPreview: URL.createObjectURL(arquivo),
+      }));
+    }
+  };
+
+  const adicionarProduto = (e) => {
+    e.preventDefault();
+
+    const produto = {
+      id: Date.now(),
+      nome: novoProduto.nome,
+      codigo: novoProduto.codigo,
+      categoria: novoProduto.categoria,
+      unidade: novoProduto.unidade,
+      preco: Number(novoProduto.preco),
+      estoqueLoja: Number(novoProduto.estoqueLoja),
+      estoqueGalpao: Number(novoProduto.estoqueGalpao),
+      estoqueMinimo: Number(novoProduto.estoqueMinimo),
+      descricao: novoProduto.descricao,
+      imagem: novoProduto.imagemPreview || item3,
+    };
+
+    setProdutos((prev) => [...prev, produto]);
+
+    setNovoProduto({
+      nome: "",
+      codigo: "",
+      categoria: "",
+      unidade: "UN",
+      preco: "",
+      estoqueLoja: "",
+      estoqueGalpao: "",
+      estoqueMinimo: "",
+      descricao: "",
+      imagem: "",
+      imagemPreview: "",
+    });
+
+    setModalOpen(false);
+  };
 
   return (
     <div>
@@ -520,7 +341,7 @@ function Estoque() {
             <div className="z-10 bg-white w-[40%]">
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 backdrop-blur-sm p-4 ">
                 <div className="bg-white">
-                  <div className="w-full max-w-2xl rounded-2xl shadow-2xl overflow-y-auto h-[calc(100vh-40px)]">
+                  <div className="w-full max-w-[900px] rounded-2xl shadow-2xl overflow-y-auto h-fit">
                     {/* Cabeçalho */}
                     <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
                       <div className="flex items-center gap-3">
@@ -544,161 +365,206 @@ function Estoque() {
                     </div>
 
                     {/* Conteúdo */}
-                    <div className="p-6 space-y-6">
-                      {/* Informações gerais */}
-                      <div>
-                        <h3 className="text-sm font-bold text-slate-700 mb-4">
-                          Informações do produto
-                        </h3>
+                    <form onSubmit={adicionarProduto}>
+                      <div className="p-6 space-y-6">
+                        {/* Informações gerais */}
+                        <div>
+                          <h3 className="text-sm font-bold text-slate-700 mb-4">
+                            Informações do produto
+                          </h3>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div className="sm:col-span-2">
+                          <div>
                             <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Nome do produto
+                              Imagem do produto
                             </label>
+
                             <input
-                              type="text"
-                              placeholder="Ex: Detergente Neutro 500ml"
-                              className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                              type="file"
+                              accept="image/*"
+                              onChange={handleImagem}
+                              className="w-full p-3 rounded-xl border border-slate-200 text-sm"
                             />
-                          </div>
 
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Código / SKU
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="Ex: PROD-001"
-                              className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Categoria
-                            </label>
-                            <select className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm text-slate-600 outline-none focus:border-blue-500">
-                              <option value="">Selecione uma categoria</option>
-                              <option>Detergentes</option>
-                              <option>Desinfetantes</option>
-                              <option>Água sanitária</option>
-                              <option>Higiene</option>
-                              <option>Acessórios de limpeza</option>
-                              <option>Outros</option>
-                            </select>
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Unidade de medida
-                            </label>
-                            <select className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm text-slate-600 outline-none focus:border-blue-500">
-                              <option>Unidade (UN)</option>
-                              <option>Caixa (CX)</option>
-                              <option>Pacote (PCT)</option>
-                              <option>Litro (L)</option>
-                              <option>Quilograma (KG)</option>
-                            </select>
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Valor unitário
-                            </label>
-                            <div className="relative">
-                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
-                                R$
-                              </span>
-                              <input
-                                type="number"
-                                placeholder="0,00"
-                                className="w-full h-11 pl-11 pr-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
+                            {novoProduto.imagemPreview && (
+                              <img
+                                src={novoProduto.imagemPreview}
+                                alt="Prévia do produto"
+                                className="mt-3 w-24 h-24 object-contain rounded-lg border"
                               />
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                            <div className="sm:col-span-2">
+                              <label className="block text-sm font-medium text-slate-600 mb-2">
+                                Nome do produto
+                              </label>
+                              <input
+                                type="text"
+                                name="nome"
+                                value={novoProduto.nome}
+                                onChange={handleChange}
+                                placeholder="Ex: Detergente Neutro 500ml"
+                                className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+                              />
+                            </div>
+
+                            <div className="space-y-4">
+                              <div>
+                                <label className="block text-sm font-medium text-slate-600 mb-2">
+                                  Categoria
+                                </label>
+                                <select
+                                  name="categoria"
+                                  onClick={novoProduto.categoria}
+                                  onChange={handleChange}
+                                  className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm text-slate-600 outline-none focus:border-blue-500"
+                                >
+                                  <option value="">
+                                    Selecione uma categoria
+                                  </option>
+                                  <option>Detergentes</option>
+                                  <option>Desinfetantes</option>
+                                  <option>Água sanitária</option>
+                                  <option>Higiene</option>
+                                  <option>Acessórios de limpeza</option>
+                                  <option>Outros</option>
+                                </select>
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-slate-600 mb-2">
+                                  Unidade de medida
+                                </label>
+                                <select
+                                  name="unidade"
+                                  onClick={novoProduto.unidade}
+                                  onChange={handleChange}
+                                  className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm text-slate-600 outline-none focus:border-blue-500"
+                                >
+                                  <option>Unidade (UN)</option>
+                                  <option>Caixa (CX)</option>
+                                  <option>Pacote (PCT)</option>
+                                  <option>Litro (L)</option>
+                                  <option>Quilograma (KG)</option>
+                                </select>
+                              </div>
+
+                              <div>
+                                <label className="block text-sm font-medium text-slate-600 mb-2">
+                                  Valor unitário
+                                </label>
+                                <div className="relative">
+                                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+                                    R$
+                                  </span>
+                                  <input
+                                    type="number"
+                                    name="preco"
+                                    onClick={novoProduto.preco}
+                                    onChange={handleChange}
+                                    placeholder="0,00"
+                                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            {/* Estoque */}
+                            <div>
+                              <h3 className="text-sm font-bold text-slate-700 mb-4">
+                                Controle de estoque inicial
+                              </h3>
+
+                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                  <label className="block text-sm font-medium text-slate-600 mb-2">
+                                    Estoque da loja
+                                  </label>
+                                  <input
+                                    type="number"
+                                    name="estoqueLoja"
+                                    onClick={novoProduto.estoqueLoja}
+                                    onChange={handleChange}
+                                    placeholder="0"
+                                    className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
+                                  />
+                                </div>
+
+                                <div>
+                                  <label className="block text-sm font-medium text-slate-600 mb-2">
+                                    Estoque do galpão
+                                  </label>
+                                  <input
+                                    type="number"
+                                    name="estoqueGalpao"
+                                    onClick={novoProduto.estoqueGalpao}
+                                    onChange={handleChange}
+                                    placeholder="0"
+                                    className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
+                                  />
+                                </div>
+
+                                <div>
+                                  <label className="block text-sm font-medium text-slate-600 mb-2">
+                                    Estoque mínimo
+                                  </label>
+                                  <input
+                                    type="number"
+                                    name="estoqueMinimo"
+                                    onClick={novoProduto.estoqueMinimo}
+                                    onChange={handleChange}
+                                    placeholder="Ex: 10"
+                                    className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="mt-4 flex items-start gap-2 p-3 rounded-xl bg-blue-50 border border-blue-100">
+                                <Info
+                                  size={17}
+                                  className="text-blue-600 mt-0.5 shrink-0"
+                                />
+                                <p className="text-xs text-blue-700 leading-relaxed">
+                                  O estoque total será calculado automaticamente
+                                  pela soma das quantidades da loja e do galpão.
+                                  O estoque mínimo será utilizado para gerar
+                                  alertas de reposição.
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Estoque */}
-                      <div>
-                        <h3 className="text-sm font-bold text-slate-700 mb-4">
-                          Controle de estoque inicial
-                        </h3>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Estoque da loja
-                            </label>
-                            <input
-                              type="number"
-                              placeholder="0"
-                              className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Estoque do galpão
-                            </label>
-                            <input
-                              type="number"
-                              placeholder="0"
-                              className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
-                            />
-                          </div>
-
-                          <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-2">
-                              Estoque mínimo
-                            </label>
-                            <input
-                              type="number"
-                              placeholder="Ex: 10"
-                              className="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-blue-500"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="mt-4 flex items-start gap-2 p-3 rounded-xl bg-blue-50 border border-blue-100">
-                          <Info
-                            size={17}
-                            className="text-blue-600 mt-0.5 shrink-0"
+                        {/* Descrição */}
+                        {/* <div>
+                          <label className="block text-sm font-medium text-slate-600 mb-2">
+                            Descrição (opcional)
+                          </label>
+                          <textarea
+                            rows="3"
+                            name="descricao"
+                            onClick={novoProduto.descricao}
+                            onChange={handleChange}
+                            placeholder="Adicione informações sobre o produto..."
+                            className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none outline-none focus:border-blue-500"
                           />
-                          <p className="text-xs text-blue-700 leading-relaxed">
-                            O estoque total será calculado automaticamente pela
-                            soma das quantidades da loja e do galpão. O estoque
-                            mínimo será utilizado para gerar alertas de
-                            reposição.
-                          </p>
-                        </div>
+                        </div> */}
                       </div>
+                      {/* Rodapé */}
+                      <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-6 py-5">
+                        <button className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 bg-slate-300 cursor-pointer hover:scale-90 duration-500 transition">
+                          Cancelar
+                        </button>
 
-                      {/* Descrição */}
-                      <div>
-                        <label className="block text-sm font-medium text-slate-600 mb-2">
-                          Descrição (opcional)
-                        </label>
-                        <textarea
-                          rows="3"
-                          placeholder="Adicione informações sobre o produto..."
-                          className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none outline-none focus:border-blue-500"
-                        />
+                        <button
+                          type="submit"
+                          className="cursor-pointer sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-700 hover:scale-90 duration-500 text-white text-sm font-semibold shadow-lg shadow-blue-600/20 transition"
+                        >
+                          <Plus size={18} />
+                          Cadastrar produto
+                        </button>
                       </div>
-                    </div>
-
-                    {/* Rodapé */}
-                    <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-6 py-5">
-                      <button className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 bg-slate-300 cursor-pointer hover:scale-90 duration-500 transition">
-                        Cancelar
-                      </button>
-
-                      <button className="w- cursor-pointer sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-700 hover:scale-90 duration-500 text-white text-sm font-semibold shadow-lg shadow-blue-600/20 transition">
-                        <Plus size={18} />
-                        Cadastrar produto
-                      </button>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>

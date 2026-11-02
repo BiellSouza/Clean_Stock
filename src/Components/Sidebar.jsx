@@ -132,7 +132,7 @@ function SidebarComponent() {
               aria-pressed={!selected}
               className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
                 !selected
-                  ? "bg-destaq text-white shadow-md"
+                  ? "bg-primaryDark text-white shadow-md"
                   : "text-white/50 hover:bg-white/5 hover:text-white/80"
               }`}
             >
@@ -153,7 +153,7 @@ function SidebarComponent() {
               aria-pressed={selected}
               className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
                 selected
-                  ? "bg-destaq text-white shadow-md"
+                  ? "bg-primaryDark text-white shadow-md"
                   : "text-white/50 hover:bg-white/5 hover:text-white/80"
               }`}
             >
