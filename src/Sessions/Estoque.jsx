@@ -80,17 +80,6 @@ function Estoque() {
       imagem:
         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
     },
-    {
-      id: 25,
-      nome: "Balde Plástico 12L",
-      categoria: "Acessórios",
-      unidade: "UN",
-      preco: 16.9,
-      estoqueLoja: 6,
-      estoqueGalpao: 12,
-      estoqueMinimo: 10,
-      imagem: "/products/balde.png",
-    },
   ]);
 
   const [novoProduto, setNovoProduto] = useState({
@@ -129,6 +118,20 @@ function Estoque() {
 
   const adicionarProduto = (e) => {
     e.preventDefault();
+
+    if (
+      !novoProduto.nome.trim() ||
+      !novoProduto.codigo.trim() ||
+      !novoProduto.categoria ||
+      !novoProduto.unidade ||
+      novoProduto.preco === "" ||
+      novoProduto.estoqueLoja === "" ||
+      novoProduto.estoqueGalpao === "" ||
+      novoProduto.estoqueMinimo === ""
+    ) {
+      alert("Por favor, preencha todos os campos obrigatórios!");
+      return;
+    }
 
     const produto = {
       id: Date.now(),
@@ -192,7 +195,7 @@ function Estoque() {
         <hr className="border-b border-primary/20 w-full" />
 
         <div className="mt-8 flex items-center justify-between gap-8">
-          {/* Select */}
+          {/* Select
           <div className="flex border border-primary/20 rounded-lg w-fit">
             <button
               className={`min-w-22 px-4 h-10 text-sm cursor-pointer hover:bg-primary/20 duration-300 transition-all ${selected === "Todos" ? "bg-primaryDark text-white" : ""}`}
@@ -212,7 +215,7 @@ function Estoque() {
             >
               Galpão
             </button>
-          </div>
+          </div> */}
           {/* Input */}
           <div className="w-full">
             <div className="border border-gray-200 py-2 px-4 hidden lg:flex items-center gap-4 rounded-xl w-full bg-terciary">
@@ -545,7 +548,10 @@ function Estoque() {
                       </div>
                       {/* Rodapé */}
                       <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-6 py-5">
-                        <button className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 bg-slate-300 cursor-pointer hover:scale-90 duration-500 transition">
+                        <button
+                          onClick={() => setModalOpen(false)}
+                          className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 bg-slate-300 cursor-pointer hover:scale-90 duration-500 transition"
+                        >
                           Cancelar
                         </button>
 
