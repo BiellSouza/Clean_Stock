@@ -13,7 +13,6 @@ import {
   Ellipsis,
   Info,
 } from "lucide-react";
-import item3 from "../assets/produtos/item2.png";
 
 function Estoque() {
   const styleButtons = `border border-primary/20 p-2 bg-primary/5 rounded-lg text-primaryDark hover:scale-90 transition-all duration-500 cursor-pointer`;
@@ -54,7 +53,6 @@ function Estoque() {
       estoqueLoja: 12,
       estoqueGalpao: 18,
       estoqueMinimo: 10,
-      descricao: "Sabão líquido para limpeza de roupas.",
       imagem:
         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
     },
@@ -67,7 +65,6 @@ function Estoque() {
       estoqueLoja: 5,
       estoqueGalpao: 10,
       estoqueMinimo: 20,
-      descricao: "Água sanitária para limpeza e desinfecção.",
       imagem:
         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQH5xhTvUfs6LEUIT3kodNiVnWDWzKvYeQL7G4FhLMo1CH7SPd80vpfDGV1kRF8ZbzgYycLv1MVf9CJhoflY0OYqMLl80qXwBmAjaL5xG5llyAcnbuR6Cg93CiR077hjRbygFNlaR0&usqp=CAc",
     },
@@ -80,8 +77,8 @@ function Estoque() {
       estoqueLoja: 25,
       estoqueGalpao: 40,
       estoqueMinimo: 15,
-      descricao: "Desinfetante perfumado com fragrância de lavanda.",
-      imagem: item3,
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQeO9z4xX1huTmoOut2Mc4ecfyZnUAFsHd6sOrtZAefyPfkHwYimHHDjuhoI6txzuyIC6Rtgm1Sxv6QYV9-LFh2Jidlsm1v68cGEgmZNlTJ724erMul7sknAIou0pfgHjuP-Dr2WQ&usqp=CAc",
     },
     {
       id: 25,
@@ -92,7 +89,6 @@ function Estoque() {
       estoqueLoja: 6,
       estoqueGalpao: 12,
       estoqueMinimo: 10,
-      descricao: "Balde plástico resistente para atividades de limpeza.",
       imagem: "/products/balde.png",
     },
   ]);
@@ -106,7 +102,6 @@ function Estoque() {
     estoqueLoja: "",
     estoqueGalpao: "",
     estoqueMinimo: "",
-    descricao: "",
     imagem: "",
   });
 
@@ -145,7 +140,6 @@ function Estoque() {
       estoqueLoja: Number(novoProduto.estoqueLoja),
       estoqueGalpao: Number(novoProduto.estoqueGalpao),
       estoqueMinimo: Number(novoProduto.estoqueMinimo),
-      descricao: novoProduto.descricao,
       imagem: novoProduto.imagemPreview || item3,
     };
 
@@ -160,7 +154,6 @@ function Estoque() {
       estoqueLoja: "",
       estoqueGalpao: "",
       estoqueMinimo: "",
-      descricao: "",
       imagem: "",
       imagemPreview: "",
     });
