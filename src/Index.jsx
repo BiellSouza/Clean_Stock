@@ -6,6 +6,7 @@ import Dashboard from "./Sessions/Dashboard";
 import "../src/index.css";
 import Stock from "./Sessions/Stock";
 import Orders from "./Sessions/Orders";
+import Stores from "./Sessions/Stores";
 
 function Index() {
   return (
@@ -17,6 +18,7 @@ function Index() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/estoque" element={<Stock />}></Route>
           <Route path="/orders" element={<Orders />}></Route>
+          <Route path="/stores" element={<Stores />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

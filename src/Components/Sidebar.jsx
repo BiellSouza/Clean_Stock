@@ -38,7 +38,7 @@ function SidebarComponent() {
     },
     {
       icon: <ClipboardList size={20} />,
-      link: "/compras",
+      link: "/stores",
       label: "Compras",
     },
     {
