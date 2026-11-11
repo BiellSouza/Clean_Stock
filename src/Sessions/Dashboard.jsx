@@ -134,7 +134,7 @@ function Dashboard() {
     },
   ];
   return (
-    <div className="min-h-screen bg-terciary pb-8">
+    <div className="min-h-screen pb-8">
       <div className="">
         <SidebarComponent />
       </div>
@@ -143,7 +143,7 @@ function Dashboard() {
         {/* header */}
         <div className="bg-secondary px-8 py-4 border-b border-black/10 flex items-center justify-between">
           {/* Imput */}
-          <div className="border border-gray-200 max-w-164 py-2 px-4 hidden lg:flex items-center gap-4 rounded-xl lg:w-[50%] bg-terciary">
+          <div className="border border-gray-200 max-w-164 py-2 px-4 hidden lg:flex items-center gap-4 rounded-xl lg:w-[50%] bg-white">
             <span>
               <Search className="size-5" />
             </span>
@@ -193,7 +193,7 @@ function Dashboard() {
 
           {/* Data */}
           <div className="flex items-center gap-4">
-            <p className="lg:text-sm text-quaternary/50 font-light">
+            <p className="lg:text-sm text-white/50 font-light">
               Hoje,{" "}
               {new Date().toLocaleDateString("pt-BR", {
                 day: "2-digit",
@@ -201,7 +201,7 @@ function Dashboard() {
                 year: "numeric",
               })}
             </p>
-            <Calendar className="text-md text-quaternary/50 size-5" />
+            <Calendar className="text-md text-white/50 size-5" />
           </div>
         </div>
         {/* Dados */}

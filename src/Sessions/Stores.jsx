@@ -83,8 +83,8 @@ function Stores() {
         {/* Header */}
         <div className="py-6 flex justify-between items-center">
           <HeaderComponent
-            title="Estoque"
-            subtitle="Controle da loja do Estoque e do Galpão"
+            title="Compras"
+            subtitle="Controle as compras da Loja"
           />
         </div>
 

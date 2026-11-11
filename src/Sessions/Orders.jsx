@@ -126,7 +126,6 @@ function Orders() {
   const cancelarPedido = () => {
     setCliente("");
     setEndereco("");
-    setDataVenda("");
     setProdutos([]);
     setProdutoSelecionado("");
     setQuantidade(1);
@@ -134,6 +133,7 @@ function Orders() {
   };
 
   // Finalizar pedido
+
   const finalizarPedido = async () => {
     if (!cliente.trim() || !endereco.trim() || !dataVenda) {
       alert("Preencha o cliente, endereço e data da venda.");
@@ -148,7 +148,19 @@ function Orders() {
     setSalvando(true);
 
     try {
-      // 1. Salvar os dados principais do pedido
+      console.log("ETAPA 1: Inserindo pedido...");
+
+      const {
+        data: { session },
+        error: erroSessao,
+      } = await supabase.auth.getSession();
+
+      console.log("PROJETO:", supabase.supabaseUrl);
+
+      console.log("SESSÃO:", session ? "AUTHENTICATED" : "ANON");
+
+      console.log("ERRO DE SESSÃO:", erroSessao);
+
       const { data: pedido, error: erroPedido } = await supabase
         .from("pedidos")
         .insert([
@@ -164,9 +176,15 @@ function Orders() {
         .select()
         .single();
 
-      if (erroPedido) throw erroPedido;
+      if (erroPedido) {
+        console.error("ERRO NA TABELA PEDIDOS:", erroPedido);
+        throw erroPedido;
+      }
 
-      // 2. Preparar os produtos do pedido
+      console.log("PEDIDO SALVO:", pedido);
+
+      console.log("ETAPA 2: Inserindo itens...");
+
       const itens = produtos.map((produto) => ({
         pedido_id: pedido.id,
         produto_id: produto.produto_id,
@@ -176,18 +194,22 @@ function Orders() {
         subtotal: produto.unitario * produto.qtd,
       }));
 
-      // 3. Salvar os itens
       const { error: erroItens } = await supabase
         .from("itens_pedido")
         .insert(itens);
 
-      if (erroItens) throw erroItens;
+      if (erroItens) {
+        console.error("ERRO NA TABELA ITENS_PEDIDO:", erroItens);
+        throw erroItens;
+      }
+
+      console.log("ITENS DO PEDIDO SALVOS COM SUCESSO!");
+      console.log("ITENS SALVOS:");
 
       alert("Pedido cadastrado com sucesso!");
-
       cancelarPedido();
     } catch (error) {
-      console.error("Erro completo:", error);
+      console.error("ERRO COMPLETO:", error);
 
       alert("Erro ao cadastrar pedido:\n" + JSON.stringify(error, null, 2));
     } finally {
