@@ -46,7 +46,7 @@ function GraficoPedidos() {
       </div>
 
       {/* Gráfico */}
-      <div className="w-full h-[250px]">
+      <div className="w-full h-[200px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={dados}
