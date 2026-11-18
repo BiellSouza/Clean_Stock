@@ -8,6 +8,7 @@ import Stock from "./Sessions/Stock";
 import Orders from "./Sessions/Orders";
 import Stores from "./Sessions/Stores";
 import Users from "./Sessions/Users";
+import Products from "./Sessions/Products";
 
 function Index() {
   return (
@@ -15,8 +16,9 @@ function Index() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Register />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/estoque" element={<Stock />}></Route>
           <Route path="/orders" element={<Orders />}></Route>
           <Route path="/stores" element={<Stores />}></Route>
