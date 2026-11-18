@@ -270,10 +270,10 @@ function Dashboard() {
                   onClick={() => setNotificationsOpen(!notificationsOpen)}
                   className="relative p-2 rounded-lg hover:bg-gray-100 transition"
                 >
-                  <BellDot className="size-5 text-gray-600 hover:scale-95 duration-500 transition-all cursor-pointer" />
+                  <BellDot className="size-6 text-gray-600 hover:scale-95 duration-500 transition-all cursor-pointer" />
 
                   {naoLidas > 0 && (
-                    <span className="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white" />
+                    <span className="absolute top-2 right-2 size-3 bg-red-500 rounded-full border-2 border-white" />
                   )}
                 </button>
 
