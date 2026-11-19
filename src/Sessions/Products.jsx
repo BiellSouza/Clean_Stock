@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderComponent from "../Components/HeaderComponent";
 import SearchComponent from "../Components/SearchComponent";
 import Sidebar from "../Components/Sidebar";
-import { Download, Plus } from "lucide-react";
+import {
+  Box,
+  BrushCleaning,
+  Bubbles,
+  ChevronLeft,
+  ChevronRight,
+  CookingPot,
+  Download,
+  GlassWater,
+  Plus,
+  SquareArrowDownRight,
+} from "lucide-react";
 
 function Products() {
   function testeButton() {
@@ -12,6 +23,105 @@ function Products() {
   function testeButtonExport() {
     alert("Botão Exportar funcionando!");
   }
+
+  const filterProducts = [
+    {
+      icon: <Box className="size-4" />,
+      label: "Todos",
+    },
+    {
+      icon: <BrushCleaning className="size-4" />,
+      label: "Limpeza",
+    },
+    {
+      icon: <CookingPot className="size-4" />,
+      label: "Alimentos",
+    },
+    {
+      icon: <GlassWater className="size-4" />,
+      label: "Descartáveis",
+    },
+    {
+      icon: <Bubbles className="size-4" />,
+      label: "Higiene",
+    },
+  ];
+
+  const productsExample = [
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Limpeza",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQlCJ-Ntc8cJyeddW_q_56xDj065tYHZsOsWBuWEfZpQ&s=10",
+      produto: "Água sanitária 1L",
+      categoria: "Limpeza",
+      unidade: "UN",
+      preco: "2.50",
+      loja: 15,
+      galpao: 10,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Limpeza",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQlCJ-Ntc8cJyeddW_q_56xDj065tYHZsOsWBuWEfZpQ&s=10",
+      produto: "Água sanitária 1L",
+      categoria: "Limpeza",
+      unidade: "UN",
+      preco: "2.50",
+      loja: 15,
+      galpao: 10,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Limpeza",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQlCJ-Ntc8cJyeddW_q_56xDj065tYHZsOsWBuWEfZpQ&s=10",
+      produto: "Água sanitária 1L",
+      categoria: "Limpeza",
+      unidade: "UN",
+      preco: "2.50",
+      loja: 15,
+      galpao: 10,
+    },
+  ];
+
+  const [filterSelected, setFilterSelected] = useState("");
+
+  const numbersPageFilter = [1, 2, 3, 4, 5];
+  const [filterPage, setFilterPage] = useState(0);
+
+  const proximo = () => {
+    setFilterPage((prev) => Math.min(prev + 1, numbersPageFilter.length - 1));
+  };
+
+  const anterior = () => {
+    setFilterPage((prev) => Math.max(prev - 1, 0));
+  };
 
   return (
     <div className="min-h-screen pb-8">
@@ -52,6 +162,104 @@ function Products() {
               </button>
             </div>
           </section>
+
+          <hr className="w-full opacity-20 mt-4 mb-2" />
+
+          <div className="flex items-center gap-6 mt-4">
+            {filterProducts.map((item, index) => (
+              <div key={index}>
+                <button
+                  onClick={() => setFilterSelected(index)}
+                  className={`px-4 py-1.5 border-gray-300 rounded-lg border-2 flex items-center gap-2 cursor-pointer ${filterSelected === index ? "border-primaryDark border-2 duration-500 transition-all" : ""}`}
+                >
+                  <span>{item.icon}</span> {item.label}
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div className="w-full mt-6">
+            <div className="grid grid-cols-[1.5fr_2fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-gray-200 px-4 py-2 rounded-tr-lg rounded-tl-lg">
+              <p>Imagem</p>
+              <p>Produto</p>
+              <p>Categoria</p>
+              <p>Unidade</p>
+              <p>Preço</p>
+              <p>Loja</p>
+              <p>Galpão</p>
+              <p>Total</p>
+              <p>Status</p>
+            </div>
+
+            <div className="flex flex-col gap-4 pt-4 px-4 border rounded-bl-lg rounded-br-lg border-gray-300 border-t-0">
+              {productsExample.map((item, index) => {
+                const total = item.loja + item.galpao;
+
+                return (
+                  <div className="grid grid-cols-[1.5fr_2fr_1fr_1fr_1fr_1fr_1fr_0.9fr_1fr] border-b border-gray-200 pb-4">
+                    <img
+                      className="object-contain border w-14 h-16 p-2 rounded-lg border-gray-200"
+                      src={item.imagem}
+                      alt=""
+                    />
+
+                    <p className="my-auto">{item.produto}</p>
+
+                    <p className="my-auto">{item.categoria}</p>
+                    <p className="my-auto">{item.unidade}</p>
+                    <p className="my-auto">{item.preco}</p>
+                    <p className="my-auto">{item.loja}</p>
+                    <p className="my-auto">{item.galpao}</p>
+                    <p className="my-auto">{total}</p>
+                    <div className="text-center w-14 my-auto">
+                      {total >= 50 ? (
+                        <p className="text-green-500 font-medium">Normal</p>
+                      ) : (
+                        <p className="text-red-500 font-medium">Baixo</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <p className="h-2 text-gray-500">Mostrando 1-5 de 240 produtos</p>
+            <div className="flex items-center gap-2 justify-end mt-4">
+              <div
+                onClick={anterior}
+                className="cursor-pointer hover:scale-90 duration-500 transition-all"
+              >
+                <ChevronLeft />
+              </div>
+              <div className="flex gap-2">
+                {numbersPageFilter.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setFilterPage(index)}
+                    disabled={item === ".."}
+                    className={`p-2 border rounded-lg w-8 h-8 flex items-center justify-center
+      ${
+        filterPage === index
+          ? "bg-primaryDark text-white border-primaryDark"
+          : "border-gray-300 hover:bg-gray-100"
+      }
+      ${item === ".." ? "cursor-default" : "cursor-pointer"}
+    `}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+              <div
+                onClick={proximo}
+                className="cursor-pointer hover:scale-90 duration-500 transition-all"
+              >
+                <ChevronRight />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
