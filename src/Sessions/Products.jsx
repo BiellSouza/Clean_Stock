@@ -39,7 +39,7 @@ function Products() {
     },
     {
       icon: <GlassWater className="size-4" />,
-      label: "Descartáveis",
+      label: "Descart",
     },
     {
       icon: <Bubbles className="size-4" />,
@@ -60,6 +60,26 @@ function Products() {
     },
     {
       imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Alimentos",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Higiene",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQlCJ-Ntc8cJyeddW_q_56xDj065tYHZsOsWBuWEfZpQ&s=10",
       produto: "Água sanitária 1L",
       categoria: "Limpeza",
@@ -72,7 +92,37 @@ function Products() {
       imagem:
         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
       produto: "Sabão líquido 5L",
-      categoria: "Limpeza",
+      categoria: "Higiene",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Alimentos",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Higiene",
+      unidade: "UN",
+      preco: 14.9,
+      loja: 32,
+      galpao: 18,
+    },
+    {
+      imagem:
+        "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR06pTOEuJTsDRlfv5kEnli-i1lN3CpOK62Eho17x63Jtvr4ShqNUfCnFUtHFIsezm9DJpS94KrP1L4tdBf4g86LTBerTjitd4QWyenRsl0Wycq4nRwdrLSU0x54-fRvwXKVkaxt-I&usqp=CAc",
+      produto: "Sabão líquido 5L",
+      categoria: "Higiene",
       unidade: "UN",
       preco: 14.9,
       loja: 32,
@@ -102,7 +152,7 @@ function Products() {
       imagem:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQlCJ-Ntc8cJyeddW_q_56xDj065tYHZsOsWBuWEfZpQ&s=10",
       produto: "Água sanitária 1L",
-      categoria: "Limpeza",
+      categoria: "Descart",
       unidade: "UN",
       preco: "2.50",
       loja: 15,
@@ -110,10 +160,12 @@ function Products() {
     },
   ];
 
-  const [filterSelected, setFilterSelected] = useState("");
+  const [filterSelected, setFilterSelected] = useState(0);
+  const [filterPage, setFilterPage] = useState(0);
+
+  const productsPerPage = 10;
 
   const numbersPageFilter = [1, 2, 3, 4, 5];
-  const [filterPage, setFilterPage] = useState(0);
 
   const proximo = () => {
     setFilterPage((prev) => Math.min(prev + 1, numbersPageFilter.length - 1));
@@ -123,8 +175,25 @@ function Products() {
     setFilterPage((prev) => Math.max(prev - 1, 0));
   };
 
+  const filteredProducts =
+    filterSelected === 0
+      ? productsExample
+      : productsExample.filter(
+          (item) => item.categoria === filterProducts[filterSelected].label,
+        );
+
+  const totalProducts = filteredProducts.length;
+
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+  const startIndex = filterPage * productsPerPage;
+
+  const endIndex = Math.min(startIndex + productsPerPage, totalProducts);
+
+  const currentProducts = filteredProducts.slice(startIndex, endIndex);
+
   return (
-    <div className="min-h-screen pb-8">
+    <div className="min-h-screen">
       <div className="">
         <Sidebar />
       </div>
@@ -170,7 +239,7 @@ function Products() {
               <div key={index}>
                 <button
                   onClick={() => setFilterSelected(index)}
-                  className={`px-4 py-1.5 border-gray-300 rounded-lg border-2 flex items-center gap-2 cursor-pointer ${filterSelected === index ? "border-primaryDark border-2 duration-500 transition-all" : ""}`}
+                  className={`px-4 py-1.5 border-gray-300 rounded-lg border-2 flex items-center gap-2 cursor-pointer ${filterSelected === index ? "border-primaryDark text-primaryDark border-2 duration-500 transition-all" : "text-gray-400"}`}
                 >
                   <span>{item.icon}</span> {item.label}
                 </button>
@@ -178,55 +247,63 @@ function Products() {
             ))}
           </div>
 
-          <div className="w-full mt-6">
-            <div className="grid grid-cols-[1.5fr_2fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-gray-200 px-4 py-2 rounded-tr-lg rounded-tl-lg">
-              <p>Imagem</p>
-              <p>Produto</p>
-              <p>Categoria</p>
-              <p>Unidade</p>
-              <p>Preço</p>
-              <p>Loja</p>
-              <p>Galpão</p>
-              <p>Total</p>
-              <p>Status</p>
-            </div>
+          <div className="max-h-[70vh] overflow-y-auto scrollbar-none">
+            <div className="w-full mt-6">
+              <div className="grid grid-cols-[1.5fr_2fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-gray-200 px-4 py-2 rounded-tr-lg rounded-tl-lg">
+                <p>Imagem</p>
+                <p>Produto</p>
+                <p>Categoria</p>
+                <p>Unidade</p>
+                <p>Preço</p>
+                <p>Loja</p>
+                <p>Galpão</p>
+                <p>Total</p>
+                <p>Status</p>
+              </div>
 
-            <div className="flex flex-col gap-4 pt-4 px-4 border rounded-bl-lg rounded-br-lg border-gray-300 border-t-0">
-              {productsExample.map((item, index) => {
-                const total = item.loja + item.galpao;
+              <div className="flex flex-col gap-4 pt-4 px-4 border rounded-bl-lg rounded-br-lg border-gray-300 border-t-0">
+                {currentProducts.map((item, index) => {
+                  const total = item.loja + item.galpao;
 
-                return (
-                  <div className="grid grid-cols-[1.5fr_2fr_1fr_1fr_1fr_1fr_1fr_0.9fr_1fr] border-b border-gray-200 pb-4">
-                    <img
-                      className="object-contain border w-14 h-16 p-2 rounded-lg border-gray-200"
-                      src={item.imagem}
-                      alt=""
-                    />
+                  return (
+                    <div
+                      key={index}
+                      className="grid grid-cols-[1.5fr_2fr_1fr_1fr_1fr_1fr_1fr_0.9fr_1fr] border-b border-gray-200 pb-4 overflow-y-auto"
+                    >
+                      <img
+                        className="object-contain border w-14 h-16 p-2 rounded-lg border-gray-200"
+                        src={item.imagem}
+                        alt=""
+                      />
 
-                    <p className="my-auto">{item.produto}</p>
+                      <p className="my-auto">{item.produto}</p>
 
-                    <p className="my-auto">{item.categoria}</p>
-                    <p className="my-auto">{item.unidade}</p>
-                    <p className="my-auto">{item.preco}</p>
-                    <p className="my-auto">{item.loja}</p>
-                    <p className="my-auto">{item.galpao}</p>
-                    <p className="my-auto">{total}</p>
-                    <div className="text-center w-14 my-auto">
-                      {total >= 50 ? (
-                        <p className="text-green-500 font-medium">Normal</p>
-                      ) : (
-                        <p className="text-red-500 font-medium">Baixo</p>
-                      )}
+                      <p className="my-auto">{item.categoria}</p>
+                      <p className="my-auto">{item.unidade}</p>
+                      <p className="my-auto">{item.preco}</p>
+                      <p className="my-auto">{item.loja}</p>
+                      <p className="my-auto">{item.galpao}</p>
+                      <p className="my-auto">{total}</p>
+                      <div className="text-center w-14 my-auto">
+                        {total >= 50 ? (
+                          <p className="text-green-500 font-medium">Normal</p>
+                        ) : (
+                          <p className="text-red-500 font-medium">Baixo</p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <p className="h-2 text-gray-500">Mostrando 1-5 de 240 produtos</p>
-            <div className="flex items-center gap-2 justify-end mt-4">
+          <div className="flex justify-between items-center border-t-2 border-gray-200 mt-4 pt-4 pb-4 px-2">
+            <p className="text-gray-500">
+              Mostrando {totalProducts === 0 ? 0 : startIndex + 1}-{endIndex} de{" "}
+              {totalProducts} produtos
+            </p>
+            <div className="flex items-center gap-2 justify-end">
               <div
                 onClick={anterior}
                 className="cursor-pointer hover:scale-90 duration-500 transition-all"

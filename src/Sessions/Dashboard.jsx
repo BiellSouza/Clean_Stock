@@ -161,7 +161,7 @@ function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen pb-8">
+    <div className="min-h-screen">
       <div className="">
         <SidebarComponent />
       </div>
