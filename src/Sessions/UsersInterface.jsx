@@ -187,7 +187,7 @@ function UsersInterface() {
 
           <button
             onClick={abrirCadastro}
-            className="flex items-center gap-2 rounded-xl bg-[#9A814C] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#806a3d]"
+            className="flex items-center gap-2 rounded-xl bg-[#9A814C] px-5 py-3 text-sm font-medium text-white hover:bg-[#806a3d] cursor-pointer hover:scale-90 duration-500 transition-all"
           >
             <Plus size={18} /> Novo usuário
           </button>
@@ -313,7 +313,7 @@ function UsersInterface() {
                         <button
                           title="Editar"
                           onClick={() => abrirEdicao(usuario)}
-                          className="rounded-lg p-2 text-gray-500 hover:bg-[#F5F1E9] hover:text-[#9A814C]"
+                          className="rounded-lg p-2 text-gray-500 hover:bg-[#F5F1E9] hover:text-[#9A814C] cursor-pointer hover:scale-90 duration-500 transition-all"
                         >
                           <Pencil size={17} />
                         </button>
@@ -322,7 +322,7 @@ function UsersInterface() {
                             usuario.status === "Ativo" ? "Desativar" : "Ativar"
                           }
                           onClick={() => alternarStatus(usuario)}
-                          className="rounded-lg p-2 text-gray-500 hover:bg-gray-100"
+                          className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 cursor-pointer hover:scale-90 duration-500 transition-all"
                         >
                           {usuario.status === "Ativo" ? (
                             <UserX size={17} />
@@ -333,7 +333,7 @@ function UsersInterface() {
                         <button
                           title="Excluir"
                           onClick={() => excluirUsuario(usuario)}
-                          className="rounded-lg p-2 text-red-400 hover:bg-red-50"
+                          className="rounded-lg p-2 text-red-400 hover:bg-red-50 cursor-pointer hover:scale-90 duration-500 transition-all"
                         >
                           <Trash2 size={17} />
                         </button>
@@ -412,7 +412,7 @@ function UsersInterface() {
               <button
                 type="button"
                 onClick={() => setModalAberto(false)}
-                className="rounded-lg p-2 text-gray-400 hover:bg-gray-100"
+                className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 cursor-pointer hover:scale-90 duration-500 transition-all"
               >
                 <X />
               </button>
@@ -491,7 +491,7 @@ function UsersInterface() {
                     <button
                       type="button"
                       onClick={() => setMostrarSenha(!mostrarSenha)}
-                      className="absolute right-3 top-3 text-gray-400"
+                      className="absolute right-3 top-3 text-gray-400 cursor-pointer hover:scale-90 duration-500 transition-all"
                     >
                       {mostrarSenha ? <EyeOff size={19} /> : <Eye size={19} />}
                     </button>
@@ -520,13 +520,13 @@ function UsersInterface() {
               <button
                 type="button"
                 onClick={() => setModalAberto(false)}
-                className="rounded-xl border border-gray-200 px-5 py-3 text-sm text-gray-600"
+                className="rounded-xl border border-gray-200 px-5 py-3 text-sm text-gray-600 cursor-pointer hover:scale-90 duration-500 transition-all"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
-                className="rounded-xl bg-[#9A814C] px-5 py-3 text-sm font-medium text-white hover:bg-[#806a3d]"
+                className="rounded-xl bg-[#9A814C] px-5 py-3 text-sm font-medium text-white hover:bg-[#806a3d] cursor-pointer hover:scale-90 duration-500 transition-all"
               >
                 {usuarioSelecionado ? "Salvar alterações" : "Cadastrar usuário"}
               </button>

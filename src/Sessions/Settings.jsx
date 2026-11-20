@@ -150,7 +150,7 @@ function Configuracoes() {
               <button
                 key={item.id}
                 onClick={() => setAba(item.id)}
-                className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${
+                className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium cursor-pointer hover:scale-90 duration-500 transition-all ${
                   aba === item.id
                     ? "bg-[#9A814C] text-white"
                     : "text-gray-500 hover:bg-[#F7F5F0] hover:text-[#9A814C]"
@@ -197,7 +197,7 @@ function Configuracoes() {
                         "Upload de logotipo será implementado posteriormente.",
                       )
                     }
-                    className="mt-3 flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                    className="mt-3 flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 cursor-pointer hover:scale-90 duration-500 transition-all"
                   >
                     <Upload size={16} /> Adicionar logotipo
                   </button>
@@ -332,7 +332,7 @@ function Configuracoes() {
 
               <button
                 onClick={restaurarPreferencias}
-                className="mt-6 flex items-center gap-2 text-sm text-gray-500 hover:text-[#9A814C]"
+                className="mt-6 flex items-center gap-2 text-sm text-gray-500 hover:text-[#9A814C] cursor-pointer hover:scale-90 duration-500 transition-all"
               >
                 <RotateCcw size={16} /> Restaurar preferências padrão
               </button>
@@ -412,7 +412,7 @@ function Configuracoes() {
                     <button
                       type="button"
                       onClick={() => alternarNotificacao(campo)}
-                      className={`relative h-6 w-11 shrink-0 rounded-full transition ${notificacoes[campo] ? "bg-[#7FA66D]" : "bg-gray-300"}`}
+                      className={`relative h-6 w-11 shrink-0 rounded-full cursor-pointer hover:scale-90 duration-500 transition-all ${notificacoes[campo] ? "bg-[#7FA66D]" : "bg-gray-300"}`}
                       aria-label={`Alternar ${titulo}`}
                     >
                       <span
@@ -532,7 +532,7 @@ function Configuracoes() {
                 <button
                   type="button"
                   onClick={() => setMostrarSenhas(!mostrarSenhas)}
-                  className="mt-3 flex items-center gap-2 text-xs text-gray-500"
+                  className="mt-3 flex items-center gap-2 text-xs text-gray-500 cursor-pointer hover:scale-90 duration-500 transition-all"
                 >
                   {mostrarSenhas ? <EyeOff size={15} /> : <Eye size={15} />}
                   {mostrarSenhas ? "Ocultar senhas" : "Mostrar senhas"}
@@ -540,7 +540,7 @@ function Configuracoes() {
 
                 <button
                   type="submit"
-                  className="mt-4 rounded-xl border border-[#9A814C] px-4 py-2.5 text-sm font-medium text-[#9A814C] hover:bg-[#F8F5EF]"
+                  className="mt-4 rounded-xl border border-[#9A814C] px-4 py-2.5 text-sm font-medium text-[#9A814C] hover:bg-[#F8F5EF] cursor-pointer hover:scale-90 duration-500 transition-all"
                 >
                   Alterar senha
                 </button>
@@ -564,7 +564,7 @@ function Configuracoes() {
             </p>
             <button
               onClick={salvarConfiguracoes}
-              className="flex items-center gap-2 rounded-xl bg-[#9A814C] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#806a3d]"
+              className="flex items-center gap-2 rounded-xl bg-[#9A814C] px-5 py-3 text-sm font-medium text-white hover:bg-[#806a3d] cursor-pointer hover:scale-90 duration-500 transition-all"
             >
               {salvo ? <Check size={17} /> : <Save size={17} />}
               {salvo ? "Salvo!" : "Salvar configurações"}
