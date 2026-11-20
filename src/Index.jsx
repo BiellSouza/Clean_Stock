@@ -4,11 +4,13 @@ import Login from "./Sessions/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./Sessions/Dashboard";
 import "../src/index.css";
-import Stock from "./Sessions/Stock";
 import Orders from "./Sessions/Orders";
 import Stores from "./Sessions/Stores";
-import Users from "./Sessions/Users";
+import UsersInterface from "./Sessions/UsersInterface";
 import Products from "./Sessions/Products";
+import Entrada from "./Sessions/Entrada";
+import Estoque from "./Sessions/Estoque";
+import Settings from "./Sessions/Settings";
 
 function Index() {
   return (
@@ -19,10 +21,12 @@ function Index() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/estoque" element={<Stock />}></Route>
+          <Route path="/entrada" element={<Entrada />}></Route>
           <Route path="/orders" element={<Orders />}></Route>
           <Route path="/stores" element={<Stores />}></Route>
-          <Route path="/users" element={<Users />}></Route>
+          <Route path="/users" element={<UsersInterface />}></Route>
+          <Route path="/estoque" element={<Estoque />}></Route>
+          <Route path="/settings" element={<Settings />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

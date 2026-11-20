@@ -35,41 +35,28 @@ function Sidebar() {
     {
       icon: <Package2 className="size-5" />,
       label: "Estoque",
-      subitems: [
-        "Visão geral",
-        "Estoque da loja",
-        "Estoque do galpão",
-        "Movimentações",
-        "Histórico",
-      ],
     },
     {
       icon: <ShoppingCart className="size-5" />,
       label: "Pedidos",
-      subitems: [
-        "Novo pedido",
-        "Todos os pedidos",
-        "Pedidos pendentes",
-        "Histórico de pedidos",
-      ],
     },
-    {
-      icon: <PackagePlus className="size-5" />,
-      label: "Entrada de Produtos",
-    },
-    {
-      icon: <PackageMinus className="size-5" />,
-      label: "Saída de Produtos",
-    },
-    {
-      icon: <ChartPie className="size-5" />,
-      label: "Relatórios",
-      subitems: [
-        "Relatório de estoque",
-        "Relatório de vendas",
-        "Relatório de entradas",
-      ],
-    },
+    // {
+    //   icon: <PackagePlus className="size-5" />,
+    //   label: "Entrada de Produtos",
+    // },
+    // {
+    //   icon: <PackageMinus className="size-5" />,
+    //   label: "Saída de Produtos",
+    // },
+    // {
+    //   icon: <ChartPie className="size-5" />,
+    //   label: "Relatórios",
+    //   subitems: [
+    //     "Relatório de estoque",
+    //     "Relatório de vendas",
+    //     "Relatório de entradas",
+    //   ],
+    // },
     {
       icon: <Users className="size-5" />,
       label: "Usuários",

@@ -1,167 +1,271 @@
-import React, { useState } from "react";
-import { Eye, EyeClosed } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Eye,
+  EyeOff,
+  LockKeyhole,
+  Mail,
+  User,
+  Package,
+  ArrowRight,
+  Building2,
+} from "lucide-react";
 
 function Register() {
-  const [password, setPassword] = useState(false);
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
+
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    empresa: "",
+    senha: "",
+    confirmarSenha: "",
+  });
+
+  function handleChange(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function handleRegister(e) {
+    e.preventDefault();
+
+    if (Object.values(form).some((valor) => !valor.trim())) {
+      alert("Preencha todos os campos.");
+      return;
+    }
+
+    if (form.senha.length < 6) {
+      alert("A senha precisa ter pelo menos 6 caracteres.");
+      return;
+    }
+
+    if (form.senha !== form.confirmarSenha) {
+      alert("As senhas não são iguais.");
+      return;
+    }
+
+    alert("Cadastro demonstrativo realizado!");
+    // Posteriormente, integrar com a autenticação.
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-green-50 px-4 py-10">
-      <div className="w-full max-w-md rounded-2xl border border-gray-200/80 bg-white p-6 shadow-xl shadow-gray-900/5 sm:p-9">
-        {/* Cabeçalho */}
-        <div className="mb-8 text-center">
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-800 text-white shadow-lg shadow-green-800/20">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="27"
-              height="27"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="10" cy="7" r="4" />
-              <path d="M20 8v6" />
-              <path d="M23 11h-6" />
-            </svg>
-          </div>
+    <main className="min-h-screen flex bg-[#F8F8F6]">
+      {/* LADO ESQUERDO */}
+      <section className="hidden lg:flex w-1/2 bg-[#9A814C] relative overflow-hidden items-center justify-center p-12">
+        <div className="absolute w-[500px] h-[500px] rounded-full border border-white/10 -top-40 -left-40" />
+        <div className="absolute w-[400px] h-[400px] rounded-full border border-white/10 -bottom-40 -right-32" />
 
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-            Criar sua conta
-          </h1>
-
-          <p className="mt-2 text-sm leading-6 text-gray-500">
-            Preencha seus dados para acessar o sistema.
-          </p>
-        </div>
-
-        {/* Formulário */}
-        <form className="space-y-5">
-          <div>
-            <label
-              htmlFor="nome"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Nome completo
-            </label>
-
-            <input
-              id="nome"
-              type="text"
-              placeholder="Digite seu nome"
-              autoComplete="name"
-              className="w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-green-700 focus:bg-white focus:ring-4 focus:ring-green-700/10"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="telefone"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Telefone
-            </label>
-
-            <input
-              id="telefone"
-              type="tel"
-              placeholder="(21) 99999-9999"
-              autoComplete="tel"
-              className="w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-green-700 focus:bg-white focus:ring-4 focus:ring-green-700/10"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="email"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              E-mail
-            </label>
-
-            <input
-              id="email"
-              type="email"
-              placeholder="seuemail@exemplo.com"
-              autoComplete="email"
-              className="w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-green-700 focus:bg-white focus:ring-4 focus:ring-green-700/10"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="senha"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Senha
-            </label>
-            <div className="flex items-center rounded-xl border border-gray-200 bg-gray-50/70 px-4 py-3 transition-all focus-within:border-green-700 focus-within:bg-white focus-within:ring-4 focus-within:ring-green-700/10">
-              <input
-                id="senha"
-                type={password ? "text" : "password"}
-                placeholder="Crie uma senha"
-                autoComplete="new-password"
-                className="w-full bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-400"
-              />
-
-              <button
-                type="button"
-                onClick={() => setPassword(!password)}
-                className="ml-2 cursor-pointer text-gray-500 transition-colors hover:text-green-800"
-                aria-label={password ? "Ocultar senha" : "Mostrar senha"}
-              >
-                {password ? <Eye size={20} /> : <EyeClosed size={20} />}
-              </button>
+        <div className="relative z-10 max-w-lg text-white">
+          <div className="flex items-center gap-3 mb-16">
+            <div className="bg-white/15 p-3 rounded-2xl">
+              <Package size={32} />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold tracking-wide">StockControl</h1>
+              <p className="text-sm text-white/70">
+                Gestão inteligente de estoque
+              </p>
             </div>
           </div>
 
-          {/* Opções */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-600">
-              <input
-                type="checkbox"
-                className="h-4 w-4 cursor-pointer rounded border-gray-300 accent-green-800"
-              />
-              Lembrar login
-            </label>
+          <h2 className="text-4xl xl:text-5xl font-bold leading-tight mb-6">
+            Organize sua operação em um só lugar.
+          </h2>
 
-            <a
-              href="/recuperar-senha"
-              className="text-sm font-medium text-green-800 transition-colors hover:text-green-600"
-            >
-              Esqueceu a senha?
-            </a>
+          <p className="text-white/80 text-lg leading-relaxed">
+            Tenha mais controle sobre seus produtos, entradas, saídas e pedidos
+            com uma plataforma simples e organizada.
+          </p>
+
+          <div className="bg-white/10 border border-white/15 rounded-2xl p-6 mt-12">
+            <p className="text-lg font-semibold mb-2">
+              Gestão mais inteligente.
+            </p>
+            <p className="text-sm text-white/75 leading-relaxed">
+              Centralize as informações da sua empresa e acompanhe tudo com mais
+              segurança e praticidade.
+            </p>
           </div>
 
-          {/* Botão */}
-          <button
-            type="submit"
-            className="mt-2 w-full rounded-xl bg-green-800 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-green-800/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-900 hover:shadow-xl active:translate-y-0"
-          >
-            Criar conta
-          </button>
-
-          <p className="pt-2 text-center text-sm text-gray-500">
-            Já possui uma conta?{" "}
-            <a
-              href="/login"
-              className="font-semibold text-green-800 transition-colors hover:text-green-600"
-            >
-              Entrar
-            </a>
-          </p>
-        </form>
-
-        {/* Rodapé */}
-        <div className="mt-7 border-t border-gray-100 pt-5 text-center">
-          <p className="text-xs text-gray-400">
-            Seus dados são tratados com segurança.
+          <p className="text-white/50 text-sm mt-16">
+            © 2026 StockControl. Todos os direitos reservados.
           </p>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* LADO DIREITO */}
+      <section className="flex-1 flex items-center justify-center p-6 sm:p-10">
+        <div className="w-full max-w-md py-5">
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
+            <div className="bg-[#9A814C] text-white p-3 rounded-xl">
+              <Package size={25} />
+            </div>
+            <span className="text-xl font-bold text-[#9A814C]">
+              StockControl
+            </span>
+          </div>
+
+          <div className="mb-7">
+            <span className="text-sm font-semibold text-[#7FA66D]">
+              CRIE SUA CONTA
+            </span>
+
+            <h2 className="text-3xl font-bold text-[#292929] mt-2">
+              Comece agora
+            </h2>
+
+            <p className="text-gray-500 mt-2">
+              Preencha os dados abaixo para realizar seu cadastro.
+            </p>
+          </div>
+
+          <form onSubmit={handleRegister} className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Nome completo
+              </label>
+
+              <div className="relative">
+                <User
+                  size={18}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  name="nome"
+                  value={form.nome}
+                  onChange={handleChange}
+                  placeholder="Digite seu nome"
+                  className="w-full h-12 pl-12 pr-4 rounded-xl border border-gray-200 bg-white outline-none focus:border-[#9A814C] focus:ring-2 focus:ring-[#9A814C]/10 transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                E-mail
+              </label>
+
+              <div className="relative">
+                <Mail
+                  size={18}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="seuemail@empresa.com"
+                  className="w-full h-12 pl-12 pr-4 rounded-xl border border-gray-200 bg-white outline-none focus:border-[#9A814C] focus:ring-2 focus:ring-[#9A814C]/10 transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Empresa
+              </label>
+
+              <div className="relative">
+                <Building2
+                  size={18}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  name="empresa"
+                  value={form.empresa}
+                  onChange={handleChange}
+                  placeholder="Nome da empresa"
+                  className="w-full h-12 pl-12 pr-4 rounded-xl border border-gray-200 bg-white outline-none focus:border-[#9A814C] focus:ring-2 focus:ring-[#9A814C]/10 transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Senha
+              </label>
+
+              <div className="relative">
+                <LockKeyhole
+                  size={18}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type={mostrarSenha ? "text" : "password"}
+                  name="senha"
+                  value={form.senha}
+                  onChange={handleChange}
+                  placeholder="Mínimo de 6 caracteres"
+                  className="w-full h-12 pl-12 pr-12 rounded-xl border border-gray-200 bg-white outline-none focus:border-[#9A814C] focus:ring-2 focus:ring-[#9A814C]/10 transition"
+                />
+                <button
+                  type="button"
+                  onClick={() => setMostrarSenha(!mostrarSenha)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#9A814C] cursor-pointer"
+                >
+                  {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Confirmar senha
+              </label>
+
+              <div className="relative">
+                <LockKeyhole
+                  size={18}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type={mostrarConfirmacao ? "text" : "password"}
+                  name="confirmarSenha"
+                  value={form.confirmarSenha}
+                  onChange={handleChange}
+                  placeholder="Digite sua senha novamente"
+                  className="w-full h-12 pl-12 pr-12 rounded-xl border border-gray-200 bg-white outline-none focus:border-[#9A814C] focus:ring-2 focus:ring-[#9A814C]/10 transition"
+                />
+                <button
+                  type="button"
+                  onClick={() => setMostrarConfirmacao(!mostrarConfirmacao)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#9A814C] cursor-pointer"
+                >
+                  {mostrarConfirmacao ? (
+                    <EyeOff size={18} />
+                  ) : (
+                    <Eye size={18} />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full h-13 bg-[#9A814C] hover:bg-[#826C3E] text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition cursor-pointer mt-3"
+            >
+              Criar minha conta
+              <ArrowRight size={19} />
+            </button>
+          </form>
+
+          <p className="text-center text-sm text-gray-500 mt-7">
+            Já possui uma conta?{" "}
+            <Link
+              to="/login"
+              className="font-bold text-[#9A814C] hover:underline cursor-pointer"
+            >
+              Fazer login
+            </Link>
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
 

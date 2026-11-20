@@ -17,7 +17,7 @@ import {
   Trash2,
 } from "lucide-react";
 
-function Stock() {
+function Entrada() {
   const styleButtons =
     "border border-primary/20 p-2 bg-primary/5 rounded-lg text-primaryDark hover:scale-90 transition-all duration-300 cursor-pointer";
 
@@ -362,8 +362,8 @@ function Stock() {
         {/* HEADER */}
         <div className="py-6 flex justify-between items-center gap-4">
           <HeaderComponent
-            title="Estoque"
-            subtitle="Controle da loja do Estoque e do Galpão"
+            title="Entrada de Produtos"
+            subtitle="Rgistre entradas de Produtos comprados"
           />
 
           <div className="flex items-center gap-3 shrink-0">
@@ -397,7 +397,7 @@ function Stock() {
               title="Limpar pesquisa"
               onClick={() => setPesquisa("")}
             >
-              <X size={19} />
+              <X className="cursor-pointer" size={19} />
             </button>
           </div>
         </div>
@@ -406,7 +406,7 @@ function Stock() {
 
         {/* PESQUISA E CADASTRO */}
         <div className="mt-8 flex items-center justify-between gap-5">
-          <div className="border border-gray-200 py-2.5 px-4 flex items-center gap-3 rounded-xl w-full bg-terciary">
+          <div className="border border-gray-200 py-2.5 px-4 flex items-center gap-3 rounded-xl w-full bg-gray-200">
             <Search className="size-5 text-gray-500 shrink-0" />
 
             <input
@@ -424,7 +424,7 @@ function Stock() {
                 onClick={() => setPesquisa("")}
                 className="text-gray-400 hover:text-gray-700"
               >
-                <X size={18} />
+                <X className="cursor-pointer" size={18} />
               </button>
             )}
           </div>
@@ -599,7 +599,7 @@ function Stock() {
                   onClick={fecharModal}
                   className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700"
                 >
-                  <X size={20} />
+                  <X className="cursor-pointer" size={20} />
                 </button>
               </div>
 
@@ -667,8 +667,6 @@ function Stock() {
                           <option value="Alimentos">Alimentos</option>
                           <option value="Descartáveis">Descartáveis</option>
                           <option value="Higiene">Higiene</option>
-                          <option value="EPI's">EPI's</option>
-                          <option value="Outros">Outros</option>
                         </select>
                       </div>
 
@@ -802,7 +800,7 @@ function Stock() {
                   <button
                     type="submit"
                     disabled={salvando}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-lg shadow-blue-600/20 transition disabled:opacity-50"
+                    className="w-full cursor-pointer sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-lg shadow-blue-600/20 transition disabled:opacity-50"
                   >
                     <Plus size={18} />
                     {salvando ? "Salvando..." : "Cadastrar produto"}
@@ -874,7 +872,7 @@ function Stock() {
                           onClick={fecharDetalhes}
                           className="p-2 rounded-lg hover:bg-slate-100 text-slate-500"
                         >
-                          <X size={20} />
+                          <X className="cursor-pointer" size={20} />
                         </button>
                       </div>
 
@@ -977,4 +975,4 @@ function Stock() {
   );
 }
 
-export default Stock;
+export default Entrada;
