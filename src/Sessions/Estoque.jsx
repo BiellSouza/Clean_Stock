@@ -267,7 +267,7 @@ function Estoque() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <button
-                onClick={() => (window.location.href = "/entrada-produtos")}
+                onClick={() => alert("Botão fictício!")}
                 className="bg-[#9A814C] hover:bg-[#826c3e] text-white rounded-xl p-4 flex items-center gap-3 transition-colors"
               >
                 <div className="p-2 bg-white/20 rounded-lg">
@@ -281,7 +281,7 @@ function Estoque() {
               </button>
 
               <button
-                onClick={() => (window.location.href = "/pedidos")}
+                onClick={() => alert("Botão fictício!")}
                 className="bg-[#7FA66D] hover:bg-[#698b59] text-white rounded-xl p-4 flex items-center gap-3 transition-colors"
               >
                 <div className="p-2 bg-white/20 rounded-lg">
@@ -295,7 +295,7 @@ function Estoque() {
               </button>
 
               <button
-                onClick={() => (window.location.href = "/produtos")}
+                onClick={() => alert("Botão fictício!")}
                 className="bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 rounded-xl p-4 flex items-center gap-3 transition-colors"
               >
                 <div className="p-2 bg-gray-100 rounded-lg">
