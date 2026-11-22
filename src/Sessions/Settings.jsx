@@ -128,7 +128,7 @@ function Configuracoes() {
     <div className="min-h-screen bg-[#F8F8F6]">
       <Sidebar />
 
-      <main className="ml-64 min-h-screen p-6">
+      <main className="ml-54 min-h-screen p-6">
         <HeaderComponent
           title="Configurações"
           subtitle="Personalize o funcionamento do seu sistema"

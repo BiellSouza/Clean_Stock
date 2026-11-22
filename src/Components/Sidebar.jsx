@@ -27,44 +27,35 @@ function Sidebar() {
     {
       icon: <Home className="size-5" />,
       label: "Dashboard",
+      path: "/dashboard",
     },
     {
       icon: <Box className="size-5" />,
       label: "Produtos",
+      path: "/produtos",
     },
     {
       icon: <Package2 className="size-5" />,
       label: "Estoque",
+      path: "/estoque",
     },
     {
       icon: <ShoppingCart className="size-5" />,
       label: "Pedidos",
+      path: "/pedidos",
     },
-    // {
-    //   icon: <PackagePlus className="size-5" />,
-    //   label: "Entrada de Produtos",
-    // },
-    // {
-    //   icon: <PackageMinus className="size-5" />,
-    //   label: "Saída de Produtos",
-    // },
-    // {
-    //   icon: <ChartPie className="size-5" />,
-    //   label: "Relatórios",
-    //   subitems: [
-    //     "Relatório de estoque",
-    //     "Relatório de vendas",
-    //     "Relatório de entradas",
-    //   ],
-    // },
     {
       icon: <Users className="size-5" />,
       label: "Usuários",
-      subitems: ["Todos os usuários", "Cargos e permissões"],
+      subitems: [
+        { label: "Todos os usuários", path: "/usuarios" },
+        { label: "Cargos e permissões", path: "/usuarios" },
+      ],
     },
     {
       icon: <Settings className="size-5" />,
       label: "Configurações",
+      path: "/configuracoes",
     },
   ];
 
@@ -88,45 +79,52 @@ function Sidebar() {
               const temSubmenu = item.subitems?.length > 0;
               const aberto = menuAberto === item.label;
 
-              const ativo =
-                selected === item.label || item.subitems?.includes(selected);
-
               return (
                 <div key={index} className="w-full">
                   {/* MENU PRINCIPAL */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (temSubmenu) {
-                        toggleMenu(item.label);
-                      } else {
-                        setSelected(item.label);
+                  {!temSubmenu ? (
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        `w-full flex gap-2 items-center justify-between py-2 px-2 rounded-md cursor-pointer transition-all duration-300 ${
+                          isActive
+                            ? "bg-primaryDark text-white"
+                            : "hover:bg-primaryDark/20 text-white"
+                        }`
                       }
-                    }}
-                    className={`w-full flex gap-2 items-center justify-between py-2 px-2 rounded-md cursor-pointer transition-all duration-300 ${
-                      ativo
-                        ? "bg-primaryDark text-white"
-                        : "hover:bg-primaryDark/20 text-white"
-                    }`}
-                  >
-                    <div className="flex gap-2 items-center">
-                      {item.icon}
+                    >
+                      <div className="flex gap-2 items-center">
+                        {item.icon}
+                        <p className="font-light text-sm truncate">
+                          {item.label}
+                        </p>
+                      </div>
+                    </NavLink>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => toggleMenu(item.label)}
+                      className={`w-full flex gap-2 items-center justify-between py-2 px-2 rounded-md cursor-pointer transition-all duration-300 ${
+                        aberto
+                          ? "bg-primaryDark text-white"
+                          : "hover:bg-primaryDark/20 text-white"
+                      }`}
+                    >
+                      <div className="flex gap-2 items-center">
+                        {item.icon}
+                        <p className="font-light text-sm truncate">
+                          {item.label}
+                        </p>
+                      </div>
 
-                      <p className="font-light text-sm truncate">
-                        {item.label}
-                      </p>
-                    </div>
-
-                    {/* SETINHA */}
-                    {temSubmenu && (
                       <ChevronDown
                         size={18}
                         className={`transition-transform duration-300 ${
                           aberto ? "rotate-180" : ""
                         }`}
                       />
-                    )}
-                  </button>
+                    </button>
+                  )}
 
                   {/* SUBMENUS */}
                   {temSubmenu && (
@@ -138,18 +136,19 @@ function Sidebar() {
                       <div className="overflow-hidden min-h-0">
                         <div className="ml-4 mt-2 pl-3 border-l border-white/20 flex flex-col gap-1">
                           {item.subitems.map((subitem) => (
-                            <button
-                              key={subitem}
-                              type="button"
-                              onClick={() => setSelected(subitem)}
-                              className={`text-left text-xs py-2 px-3 rounded-md transition-all duration-300 ${
-                                selected === subitem
-                                  ? "bg-primaryDark text-white"
-                                  : "text-white/60 hover:bg-primaryDark/20 hover:text-white"
-                              }`}
+                            <NavLink
+                              key={subitem.path}
+                              to={subitem.path}
+                              className={({ isActive }) =>
+                                `text-left text-xs py-2 px-3 rounded-md transition-all duration-300 ${
+                                  isActive
+                                    ? "bg-primaryDark text-white"
+                                    : "text-white/60 hover:bg-primaryDark/20 hover:text-white"
+                                }`
+                              }
                             >
-                              {subitem}
-                            </button>
+                              {subitem.label}
+                            </NavLink>
                           ))}
                         </div>
                       </div>

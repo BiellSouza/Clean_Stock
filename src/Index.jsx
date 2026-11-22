@@ -19,14 +19,14 @@ function Index() {
         <Routes>
           <Route path="/" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/products" element={<Products />}></Route>
+          <Route path="/produtos" element={<Products />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/entrada" element={<Entrada />}></Route>
-          <Route path="/orders" element={<Orders />}></Route>
+          <Route path="/pedidos" element={<Orders />}></Route>
           <Route path="/stores" element={<Stores />}></Route>
-          <Route path="/users" element={<UsersInterface />}></Route>
+          <Route path="/usuarios" element={<UsersInterface />}></Route>
           <Route path="/estoque" element={<Estoque />}></Route>
-          <Route path="/settings" element={<Settings />}></Route>
+          <Route path="/configuracoes" element={<Settings />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
