@@ -245,13 +245,13 @@ function Register() {
               </div>
             </div>
 
-            <button
-              type="submit"
+            <Link
+              to="/dashboard"
               className="w-full h-13 bg-[#9A814C] hover:bg-[#826C3E] text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition cursor-pointer mt-3"
             >
               Criar minha conta
               <ArrowRight size={19} />
-            </button>
+            </Link>
           </form>
 
           <p className="text-center text-sm text-gray-500 mt-7">

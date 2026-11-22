@@ -178,13 +178,13 @@ function Login() {
               Manter conectado
             </label>
 
-            <button
-              type="submit"
+            <Link
+              to="/dashboard"
               className="w-full h-13 bg-[#9A814C] hover:bg-[#826C3E] text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition cursor-pointer"
             >
               Entrar na plataforma
               <ArrowRight size={19} />
-            </button>
+            </Link>
           </form>
 
           <div className="relative my-8">
@@ -197,7 +197,7 @@ function Login() {
           <p className="text-center text-sm text-gray-500">
             Ainda não possui uma conta?{" "}
             <Link
-              to="/register"
+              to="/"
               className="font-bold text-[#9A814C] hover:underline cursor-pointer"
             >
               Criar conta

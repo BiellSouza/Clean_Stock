@@ -285,8 +285,8 @@ function SearchComponent() {
               className="size-8 rounded-full object-cover object-top"
             />
             <div>
-              <h1 className="text-sm font-medium">GabrielSouza</h1>
-              <p className="text-xs text-gray-700">Administrador</p>
+              <h1 className="text-sm font-medium">Usuário</h1>
+              <p className="text-xs text-gray-700">Usuário Teste</p>
             </div>
             <button onClick={() => setProfileListOpen(!profileListOpen)}>
               <ChevronDown
